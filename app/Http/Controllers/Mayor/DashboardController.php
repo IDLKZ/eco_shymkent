@@ -78,4 +78,13 @@ class DashboardController extends Controller
         toastr('Экспорт начался!');
         return back();
     }
+
+    public function marker_edit($id){
+        $marker = Marker::with(["area","event","type","breed","sanitary","status","category","place","user"])->firstWhere("id",$id);
+        if($marker){
+            return view('mayor.marker_show', compact('marker'));
+        }
+        toastr('Не найдено!');
+        return back();
+    }
 }

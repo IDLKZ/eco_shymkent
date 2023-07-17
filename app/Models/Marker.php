@@ -81,7 +81,7 @@ class Marker extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->select(['name','email', 'image_url']);
     }
 
     public static function searchable($request, $bool = false)

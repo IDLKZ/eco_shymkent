@@ -100,7 +100,19 @@ class UserController extends Controller
                     ->select(DB::raw('count(*) as total'),  DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                     ->groupby('year','month')
                     ->get();
-                return view("admin.user.stats",compact("info_day","info_month","total","user"));
+                $breed_day = Marker::where(["user_id" =>  $id])->select(
+                    DB::raw('DATE(created_at) as date_created'),
+                    'breed_id',
+                    DB::raw('COUNT(*) as count')
+                )
+                    ->groupBy(DB::raw('DATE(created_at)'), 'breed_id')
+                    ->orderBy(DB::raw('DATE(created_at)'))
+                    ->orderBy('breed_id')
+                    ->with(["breed"])
+                    ->get();
+
+                $breed_day = $breed_day->groupBy("date_created")->toArray();
+                return view("admin.user.stats",compact("info_day","info_month","total","user","breed_day"));
             }
         }
         return redirect()->back();

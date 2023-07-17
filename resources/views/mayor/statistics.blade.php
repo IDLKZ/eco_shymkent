@@ -35,6 +35,7 @@
                                     <th scope="col" class="px-6 py-4">Место</th>
                                     <th scope="col" class="px-6 py-4">Порода</th>
                                     <th scope="col" class="px-6 py-4">Состояние</th>
+                                    <th scope="col" class="px-6 py-4">Действие</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -72,6 +73,11 @@
                                                 @else
                                                 -
                                                 @endif
+                                            </td>
+                                            <td class="whitespace-nowrap px-6 py-4">
+                                                <a href="{{route('mayor-marker-show', ["id"=>$item->id])}}" class="mr-3">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
