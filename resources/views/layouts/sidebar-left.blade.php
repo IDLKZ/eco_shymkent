@@ -46,6 +46,11 @@
                         :icon="'fas fa-pen'"
                     />
                     <x-sidebar-navlink
+                        :route="'admin-convert'"
+                        :route-name="'Конвертировать'"
+                        :icon="'fas fa-spinner'"
+                    />
+                    <x-sidebar-navlink
                         :route="'all-trees'"
                         :route-name="'Просмотр насаждений'"
                         :icon="'fas fa-map'"

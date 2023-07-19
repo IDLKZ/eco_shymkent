@@ -6,6 +6,7 @@ use App\Events\UserPresenceChannel;
 use App\Http\Controllers\Controller;
 use App\Models\GeoPosition;
 use App\Models\Marker;
+use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,11 @@ class DashboardController extends Controller
         $user_ids = $top_ten->pluck("user_id");
         $users = User::whereIn("id",$top_ten->pluck("user_id")->toArray())->pluck("name","id");
         return view('admin.dashboard',compact("total","users","user_ids"));
+    }
+
+    public function convert()
+    {
+        return view('admin.convert');
     }
 
     public function geo_positions()

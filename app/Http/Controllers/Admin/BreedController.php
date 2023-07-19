@@ -15,7 +15,7 @@ class BreedController extends Controller
      */
     public function index()
     {
-        $breeds = Breed::latest()->paginate(20);
+        $breeds = Breed::latest()->where('status',1)->paginate(30);
         return view('admin.breed.index', compact('breeds'));
     }
 
