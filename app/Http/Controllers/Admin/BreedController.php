@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainRequest;
 use App\Models\Breed;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class BreedController extends Controller
@@ -23,7 +24,8 @@ class BreedController extends Controller
      */
     public function create()
     {
-        return view('admin.breed.create');
+        $types = Type::all();
+        return view('admin.breed.create', compact('types'));
     }
 
     /**
@@ -44,6 +46,7 @@ class BreedController extends Controller
         if($request->hasFile("image_url")){
             $breed->uploadBreedImage($request->file("image_url"),"image_url");
         }
+        toastr('Success', 'success', 'Успешно создан!');
         return redirect(route('breed.index'));
     }
 
@@ -61,7 +64,8 @@ class BreedController extends Controller
     public function edit(string $id)
     {
         $breed = Breed::findOrFail($id);
-        return view('admin.breed.edit', compact('breed'));
+        $types = Type::all();
+        return view('admin.breed.edit', compact('breed', 'types'));
     }
 
     /**
@@ -71,7 +75,8 @@ class BreedController extends Controller
     {
         $this->validate($request, [
             'title_ru' => 'required',
-            'coefficient' => 'nullable|numeric'
+            'coefficient' => 'nullable|numeric',
+            'type_id' => 'required'
         ]);
         $data = $request->all();
         $data['status'] = env('APP_ADMIN_ROLE',1);
@@ -80,6 +85,7 @@ class BreedController extends Controller
         if($request->hasFile("image_url")){
             $breed->uploadBreedImage($request->file("image_url"),"image_url");
         }
+        toastr('Success', 'success', 'Успешно обновлен!');
         return redirect(route('breed.index'));
     }
 
@@ -92,6 +98,7 @@ class BreedController extends Controller
         $breed->removeBreedImage('image_url');
         $breed->deleteWithRelations($id, 'breed_id');
         $breed->delete();
+        toastr('Success', 'error', 'Успешно удален!');
         return redirect()->back();
     }
 }

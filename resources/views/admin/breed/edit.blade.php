@@ -27,6 +27,21 @@
                 @enderror
             </div>
             <div class="relative mb-4">
+                <label for="type_id" class="w-full">Выберите тип</label>
+                <select name="type_id" class="w-full" id="type_id">
+                    @if(count($types))
+                        @foreach($types as $typeItem)
+                            <option @if($typeItem->id == $breed->type_id) selected @endif value="{{$typeItem->id}}">
+                                {{$typeItem->title_ru}}
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @error('type_id')
+                <div class="text-red-600">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="relative mb-4">
                 <input
                     type="text"
                     class="@error('coefficient') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1"

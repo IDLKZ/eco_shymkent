@@ -10,10 +10,15 @@ class Breed extends Model
 {
     use HasFactory, Upload;
 
-    protected $fillable = ['title_ru', 'title_kz','image_url', 'coefficient', 'status'];
+    protected $fillable = ['title_ru', 'title_kz','image_url', 'coefficient', 'status', 'type_id'];
 
-    public function markers()
+    public function markers(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Marker::class, 'breed_id', 'id');
+    }
+
+    public function type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Type::class);
     }
 }

@@ -40,7 +40,7 @@ class ModalMarker extends Component
             $this->breeds = [];
             $this->showBtn = false;
         } else {
-            $this->breeds = Breed::where('title_ru', 'like', '%'.$this->search.'%')->get()->toArray();
+            $this->breeds = Breed::where('status', 1)->where('title_ru', 'like', '%'.$this->search.'%')->get()->toArray();
             if (empty($this->breeds)) {
                 $this->showBtn = true;
             } else {
@@ -49,20 +49,26 @@ class ModalMarker extends Component
         }
     }
 
-    public function updatedBreedStr()
+    public function setType($id)
     {
-        if ($this->breedStr != '')
-        {
-            $this->searchResults = Breed::where('title_ru', 'like', '%'.$this->breedStr.'%')->get()->toArray();
-            if (empty($this->searchResults)) {
-                $this->showBtn = true;
-            } else {
-                $this->showBtn = false;
-            }
-        } else {
-            $this->searchResults = [];
-        }
+        $breed = Breed::findOrFail($id);
+        $this->type_id = $breed->type_id;
     }
+
+//    public function updatedBreedStr()
+//    {
+//        if ($this->breedStr != '')
+//        {
+//            $this->searchResults = Breed::where('title_ru', 'like', '%'.$this->breedStr.'%')->get()->toArray();
+//            if (empty($this->searchResults)) {
+//                $this->showBtn = true;
+//            } else {
+//                $this->showBtn = false;
+//            }
+//        } else {
+//            $this->searchResults = [];
+//        }
+//    }
 
     public function addBreed()
     {
@@ -105,7 +111,7 @@ class ModalMarker extends Component
         $this->sanitaries = Sanitary::all();
 //        $this->breeds = Breed::all();
 //        $this->categories = Category::all();
-        $this->types = Type::all();
+//        $this->types = Type::all();
 //        $this->statuses = Status::all();
     }
 
