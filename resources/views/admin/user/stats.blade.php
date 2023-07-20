@@ -83,8 +83,16 @@
                     <li class="list-group-item">
                         <h2 class="card-title">Посадки в {{$day}}</h2>
                         <ul class="list-group my-4">
+
                             @foreach($breed_day[$day] as $breed_stat)
-                                <li class="list-group-item">{{$breed_stat["breed"]["title_ru"]}} - {{$breed_stat["count"]}} шт.</li>
+                                <li class="list-group-item">
+                                @if($breed_stat["breed"])
+                                {{$breed_stat["breed"]["title_ru"]}}
+                                @else
+                                    Возможно дерево было удалено
+                                @endif
+                                    - {{$breed_stat["count"]}} шт.
+                                </li>
                             @endforeach
                         </ul>
                     </li>
