@@ -22,7 +22,7 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::with("area")->paginate(20);
+        $places = Place::with("area")->latest()->paginate(20);
         return view("admin.place.index",compact("places"));
     }
 
