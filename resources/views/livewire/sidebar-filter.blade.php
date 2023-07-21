@@ -401,7 +401,7 @@
             }
         })
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        L.tileLayer('http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}',{
             maxNativeZoom: 18,
             maxZoom: 24
         }).addTo(map);
