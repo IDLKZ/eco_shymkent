@@ -16,6 +16,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
         $top_ten = DB::table('markers')
             ->select('user_id', DB::raw('count(*) as total'))
             ->groupBy('user_id')
@@ -48,4 +49,5 @@ class DashboardController extends Controller
     public function all_trees(){
         return view("admin.geo.all_trees");
     }
+
 }

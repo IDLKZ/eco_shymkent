@@ -14,6 +14,7 @@ use App\Models\Status;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use MatanYadaev\EloquentSpatial\Objects\Point;
+use MatanYadaev\EloquentSpatial\Objects\Polygon;
 
 class PlaceController extends Controller
 {
@@ -152,5 +153,27 @@ class PlaceController extends Controller
             ->orWhere('title_kz', 'LIKE','%' . $query . '%')
             ->paginate(20);
         return view ('admin.place.index', compact('places'));
+    }
+
+    public function deleteByPlace($id){
+        $place = Place::find($id);
+        if($place){
+            return view("admin.marker.delete_by_place",compact("place"));
+        }
+        toastr()->warning('Посадка не найдена!');
+        return redirect('/404');
+    }
+    public function deleteByPlaceStats(Request $request,$id){
+        $request->validate(["geocode"=>"required"]);
+        try{
+            $polygon = Polygon::fromJson($request->get("geocode"));
+            $markersCount = Marker::whereContains($polygon, "point")->where(["place_id"=>$id])->count();
+            Marker::whereContains($polygon, "point")->where(["place_id"=>$id])->delete();
+            toastr()->success("Удалено насаждений: ". $markersCount,"Success");
+        }
+        catch (\Exception $exception){
+            toastr()->error($exception->getMessage(),"Error");
+        }
+        return redirect()->back();
     }
 }
