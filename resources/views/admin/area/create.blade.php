@@ -156,7 +156,7 @@
                             if(itemLayer instanceof L.Polygon ){
                                 if(itemLayer.pm.getOptions().id != layer.pm.getOptions().id){
                                     if(turf.intersect(itemLayer.toGeoJSON(),layer.toGeoJSON()) instanceof Object){
-                                        swalWithBootstrapButtons.fire({
+                                        /*swalWithBootstrapButtons.fire({
                                             title: 'Вы уверены?',
                                             text: "Объекты на карте пересекаются",
                                             icon: 'warning',
@@ -172,7 +172,7 @@
                                                     'success'
                                                 )
                                             } else if (
-                                                /* Read more about handling dismissals below */
+                                                /!* Read more about handling dismissals below *!/
                                                 result.dismiss === Swal.DismissReason.cancel
                                             ) {
                                                 layer.remove();
@@ -182,7 +182,7 @@
                                                     'error'
                                                 )
                                             }
-                                        })
+                                        })*/
                                     }
                                 }
 
