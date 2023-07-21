@@ -142,4 +142,15 @@ class PlaceController extends Controller
         toastr()->warning('Посадка не найдена!');
         return redirect('/404');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        $places = Place::query()
+            ->with('area')
+            ->where('title_ru', 'LIKE', '%' . $query . '%')
+            ->orWhere('title_kz', 'LIKE','%' . $query . '%')
+            ->paginate(20);
+        return view ('admin.place.index', compact('places'));
+    }
 }

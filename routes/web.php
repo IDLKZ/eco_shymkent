@@ -51,7 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::get('converts', [AdminDashboardController::class, 'convert'])->name('admin-convert');
         Route::resource('area', AdminAreaController::class);
         Route::resource('user', AdminUserController::class);
-        Route::resource('place', AdminPlaceController::class);
+        Route::resource('place', AdminPlaceController::class)->except('show');
+        Route::any('place/search', [AdminPlaceController::class, 'search'])->name('place.search');
         Route::resource('breed', AdminBreedController::class);
         Route::resource('category', AdminCategoryController::class);
         Route::resource('sanitary', AdminSanitaryController::class);
