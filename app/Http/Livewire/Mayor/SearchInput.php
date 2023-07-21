@@ -12,6 +12,7 @@ use Livewire\Component;
 class SearchInput extends Component
 {
     public $areas;
+    public $areaId;
     public $types;
     public $breeds;
     public $sanitaries;
@@ -26,11 +27,11 @@ class SearchInput extends Component
         $this->sanitaries = Sanitary::all();
     }
 
-    public function getPlacesByAreaId($id)
+    public function getPlacesByAreaId()
     {
-        if ($id != 0) {
+        if ($this->areaId != 0) {
             $this->show = true;
-            $this->places = Place::where('area_id', $id)->get();
+            $this->places = Place::where('area_id', $this->areaId)->get();
         } else {
             $this->show = false;
             $this->places = [];

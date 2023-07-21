@@ -2,10 +2,11 @@
 <div class="grid grid-cols-4 gap-4">
     <div class="relative mb-4" data-te-input-wrapper-init>
         <label>Выберите район</label>
-        <select name="area_id" class="w-full" data-te-select-init>
-            <option wire:click="getPlacesByAreaId(0)" value="0" selected>Все</option>
+        <select wire:change="getPlacesByAreaId" name="area_id" wire:model="areaId" class="w-full" data-te-select-init>
+            <option value="0" selected>Все</option>
             @foreach($areas as $item)
-                <option wire:click="getPlacesByAreaId({{$item->id}})" value="{{$item->id}}">{{$item->title_ru}}</option>
+{{--                <option wire:click="getPlacesByAreaId({{$item->id}})" value="{{$item->id}}">{{$item->title_ru}}</option>--}}
+                <option value="{{$item->id}}">{{$item->title_ru}}</option>
             @endforeach
         </select>
     </div>
