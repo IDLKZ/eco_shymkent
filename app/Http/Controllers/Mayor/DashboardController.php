@@ -29,9 +29,13 @@ class DashboardController extends Controller
             ->get();
         $breedTotal = $breeds->pluck("total");
         $breedsT = Breed::whereIn("id", $breeds->pluck("breed_id")->toArray())->pluck("title_ru","id");
+//        dd($breeds);
         foreach ($breeds as $item) {
-            $dataForBreed[] = [$breedsT[$item->breed_id], ($item->total/$markerTotal)*100];
+            if ($item->breed_id) {
+                $dataForBreed[] = [$breedsT[$item->breed_id], ($item->total/$markerTotal)*100];
+            }
         }
+//        dd($dataForBreed);
 //        dd($dataForBreed);
 //        $breeds = Breed::withCount('markers')->get();
         $areas = Area::withCount('markers')->get();
