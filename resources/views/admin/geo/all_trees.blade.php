@@ -31,12 +31,10 @@
         prepareSelection();
         function prepareSelection(){
             try {
-                $("#categoriesSelection").select2({});
-                $("#breedSelection").select2({});
-                $("#typeSelection").select2({});
-                $("#eventSelection").select2({});
-                $("#statusSelection").select2({});
-                $("#sanitarySelection").select2({});
+                const selectIds = ["#categoriesSelection","#breedSelection","#typeSelection","#eventSelection","#statusSelection","#sanitarySelection"]
+                selectIds.forEach((idItem)=>{
+                   $(idItem).select2();
+                });
             }
             catch (e) {
                 console.log(e);

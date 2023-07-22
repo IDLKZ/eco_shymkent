@@ -12,6 +12,7 @@
     <link href="img/favicon.ico" rel="icon">
 
     <x-front-layout-styles></x-front-layout-styles>
+    @stack('front_css')
 </head>
 
 <body>
@@ -136,6 +137,7 @@
 
 <!-- JavaScript Libraries -->
 <x-front-layout-scripts></x-front-layout-scripts>
+@stack('front_js')
 </body>
 
 </html>

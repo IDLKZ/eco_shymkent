@@ -14,7 +14,7 @@ use App\Http\Controllers\Mayor\DashboardController as MayorDashboardController;
 use App\Http\Controllers\Admin\SanitaryTypeController as AdminSanitaryTypeController;
 use App\Http\Controllers\Admin\MarkerController as AdminMarkerController;
 use App\Http\Controllers\Admin\BackupController as AdminBackupController;
-
+use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Moder\DashboardController as ModerDashboardController;
 use App\Http\Controllers\Moder\MarkerController as ModerMarkerController;
@@ -39,6 +39,8 @@ Route::get('/statistics', [HomeController::class,"stats"])->name("stats");
 Route::get('/faq', [HomeController::class,"faq"])->name("faq");
 Route::get('/contact', [HomeController::class,"contact"])->name("contact");
 Route::get('/do-backup', [HomeController::class,"db_dump"])->name("do-backup");
+Route::get('/make-report/{id}', [HomeController::class,"make_report"])->name("make-report");
+Route::post('/save-report', [HomeController::class,"save_report"])->name("save-report");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -74,6 +76,9 @@ Route::middleware('auth')->group(function () {
         Route::put("markers-mass-update",[AdminMarkerController::class,"update"])->name("markers-mass-update");
         Route::get("back-up",[AdminBackupController::class,"index"])->name("back-up");
         Route::delete("back-up-destroy",[AdminBackupController::class,"delete"])->name("back-up-destroy");
+        Route::resource('reports', AdminReportController::class)->only([
+            'index', 'edit','destroy',"update"
+        ]);
     });
 
     Route::middleware('ModerMiddleware')->prefix('moder')->group(function () {

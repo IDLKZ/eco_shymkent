@@ -258,7 +258,7 @@
             rotateMode:false
         });
         map.pm.setLang('ru');
-        let maxZoomMap = 18;
+        let maxZoomMap = 16;
         let activeMarkerId = 0;
        let areas = {{Js::from($this->areas)}};
        let dragMode = false;

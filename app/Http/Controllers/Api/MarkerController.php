@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\Marker;
 use App\Models\Place;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Objects\Polygon;
@@ -67,5 +69,14 @@ class MarkerController extends Controller
                 ->get();
         }
         return [];
+    }
+
+    public function sendReport(Request $request){
+        $this->validate($request,["marker_id"=>"required","name"=>"required|max:255","phone"=>"required","message"=>"required"]);
+        Report::add($request->only(["marker_id","name","phone","message","email"]));
+        return response(status: 200);
+
+
+
     }
 }

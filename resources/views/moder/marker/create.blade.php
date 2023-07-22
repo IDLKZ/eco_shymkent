@@ -56,7 +56,7 @@
             <script type="module">
             //    Initialize Map
             var userId = {{\Illuminate\Support\Facades\Auth::id()}};
-            var activeGeoPlace;
+            var activeGeoPlace = [];
             let toggleShow = false;
             let dataTree = [];
             let maxZoom = 16;
@@ -70,7 +70,7 @@
                         color: place.bg_color
                     },
                     onEachFeature: function (feature, layer) {
-                        activeGeoPlace = layer;
+                        activeGeoPlace.push(layer);
                     },
                 }).addTo(map),
                 greenIcon = L.icon({
@@ -232,13 +232,20 @@
 
             //Check if in selectedArea
             function checkInBounds(layer){
-                if(activeGeoPlace){
-                    if(turf.booleanContains(activeGeoPlace.toGeoJSON(),layer.toGeoJSON())){
-                        return true;
+                if(activeGeoPlace.some((geoLayer)=>{
+                        if(turf.booleanContains(geoLayer.toGeoJSON(),layer.toGeoJSON())){
+                            return true;
+                        }
+                })){
+                        return true
                     }
+                else{
+                    layer.remove();
+                    return false;
                 }
-                layer.remove();
-                return false;
+
+
+
             }
 
             function cleanMarker(){

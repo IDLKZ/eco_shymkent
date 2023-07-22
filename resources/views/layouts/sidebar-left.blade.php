@@ -56,6 +56,11 @@
                         :icon="'fas fa-map'"
                     />
                     <x-sidebar-navlink
+                        :route="'reports.index'"
+                        :route-name="'Сообщения'"
+                        :icon="'fas fa-solid fa-exclamation'"
+                    />
+                    <x-sidebar-navlink
                         :route="'back-up'"
                         :route-name="'Дамп БД'"
                         :icon="'fas fa-database'"
