@@ -32,7 +32,7 @@ class DashboardController extends Controller
 //        dd($breeds);
         foreach ($breeds as $item) {
             if ($item->breed_id) {
-                $dataForBreed[] = [$breedsT[$item->breed_id], ($item->total/$markerTotal)*100];
+                $dataForBreed[] = [$breedsT[$item->breed_id], $item->total];
             }
         }
 //        dd($dataForBreed);
@@ -52,11 +52,12 @@ class DashboardController extends Controller
 //            }
 //        }
         foreach ($areas as $value) {
-            $dataForArea[] = [$value->title_ru, ($value->markers_count/$markerTotal) * 100];
+//            $dataForArea[] = [$value->title_ru, ($value->markers_count/$markerTotal) * 100];
+            $dataForArea[] = [$value->title_ru, $value->markers_count];
         }
 
         foreach ($sanitaries as $value) {
-            $dataForSanitary[] = [$value->title_ru , ($value->markers_count/$markerTotal) * 100];
+            $dataForSanitary[] = [$value->title_ru , $value->markers_count];
         }
         return view('mayor.dashboard', compact('dataForBreed', 'dataForArea', 'dataForSanitary', 'markerTotal'));
     }
