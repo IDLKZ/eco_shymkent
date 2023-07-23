@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 class UserPermissionController extends Controller
 {
     public function getUserPermission($id){
-        dd(env("APP_MODER_ROLE"));
-        if($user = User::where(["id"=>$id,"role_id"=>env("APP_MODER_ROLE")])->with("permission")->first()){
+        if($user = User::where(["id"=>$id,"role_id"=>env("APP_MODER_ROLE",2)])->with("permission")->first()){
             return view("admin.user.user_permission",compact("user"));
         }
         else{
@@ -23,7 +22,7 @@ class UserPermissionController extends Controller
 
     public function giveUserPermission(Request $request){
         $this->validate($request,["permission"=>"required","user_id"=>"required|exists:users,id"]);
-        if($user = User::where(["id"=>$request->get("user_id"),"role_id"=>env("APP_MODER_ROLE")])->first()){
+        if($user = User::where(["id"=>$request->get("user_id"),"role_id"=>env("APP_MODER_ROLE",2)])->first()){
             Permission::add($request->only(["user_id","permission"]));
             toastr()->success("Успешно добавлено");
         }

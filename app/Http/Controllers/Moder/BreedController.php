@@ -19,7 +19,7 @@ class BreedController extends Controller
      */
     public function index()
     {
-        $breeds = Breed::latest()->where('status', env('APP_MODER_ROLE'))->paginate(30);
+        $breeds = Breed::latest()->where('status', env('APP_MODER_ROLE',2))->paginate(30);
         return view('moder.breed.index', compact('breeds'));
     }
 
@@ -67,7 +67,7 @@ class BreedController extends Controller
      */
     public function edit(string $id)
     {
-        $breed = Breed::where('status', env('APP_MODER_ROLE'))->findOrFail($id);
+        $breed = Breed::where('status', env('APP_MODER_ROLE',2))->findOrFail($id);
         $types = Type::all();
         return view('moder.breed.edit', compact('breed', 'types'));
     }
@@ -83,7 +83,7 @@ class BreedController extends Controller
             'type_id' => 'required'
         ]);
         $data = $request->all();
-        $data['status'] = env('APP_MODER_ROLE');
+        $data['status'] = env('APP_MODER_ROLE',2);
         $breed = Breed::findOrFail($id);
         $breed->edit($data, 'image_url');
         if($request->hasFile("image_url")){
