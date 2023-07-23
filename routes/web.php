@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SanitaryController as AdminSanitaryController;
 use App\Http\Controllers\Admin\StatusController as AdminStatusController;
 use App\Http\Controllers\Admin\TypeController as AdminTypeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\UserPermissionController as AdminUserPermissionController;
 use App\Http\Controllers\Admin\PlaceController as AdminPlaceController;
 use App\Http\Controllers\Mayor\DashboardController as MayorDashboardController;
 use App\Http\Controllers\Admin\SanitaryTypeController as AdminSanitaryTypeController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Moder\DashboardController as ModerDashboardController;
 use App\Http\Controllers\Moder\MarkerController as ModerMarkerController;
 use App\Http\Controllers\Moder\TreeController as ModerTreeController;
+use App\Http\Controllers\Moder\BreedController as ModerBreedController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +55,9 @@ Route::middleware('auth')->group(function () {
         Route::get('converts', [AdminDashboardController::class, 'convert'])->name('admin-convert');
         Route::resource('area', AdminAreaController::class);
         Route::resource('user', AdminUserController::class);
+        Route::get("/user-permission/{id}",[AdminUserPermissionController::class,"getUserPermission"])->name("get-user-permission");
+        Route::post("/give-user-permission",[AdminUserPermissionController::class,"giveUserPermission"])->name("give-user-permission");
+        Route::get("/delete-user-permission/{id}/{user_id}",[AdminUserPermissionController::class,"deleteUserPermission"])->name("delete-user-permission");
         Route::resource('place', AdminPlaceController::class)->except('show');
         Route::any('place/search', [AdminPlaceController::class, 'search'])->name('place.search');
         Route::resource('breed', AdminBreedController::class);
@@ -88,6 +93,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/markers/by-area/{area_id}', [ModerMarkerController::class, 'index'])->name('moder-markers');
         Route::post('store-marker', [ModerMarkerController::class, 'store'])->name('store-marker');
         Route::resource('trees', ModerTreeController::class);
+        Route::resource('moder-breed', ModerBreedController::class);
     });
 
     Route::middleware('MayorMiddleware')->prefix('mayor')->group(function (){

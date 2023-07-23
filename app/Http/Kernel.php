@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\BeforeSessionFlush;
+use App\Http\Middleware\EnsureUserPermission;
 use App\Http\Middleware\MayorMiddleware;
 use App\Http\Middleware\ModeratorMiddleware;
 use App\Models\GeoPosition;
@@ -73,7 +74,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'AdminMiddleware' => AdminMiddleware::class,
         'ModerMiddleware' => ModeratorMiddleware::class,
-        'MayorMiddleware' => MayorMiddleware::class
+        'MayorMiddleware' => MayorMiddleware::class,
+        "EnsureUserPermission" => EnsureUserPermission::class
     ];
 
     public function terminate($request, $response): void

@@ -118,11 +118,6 @@
                         :route-name="'Главная'"
                         :icon="'bx bx-home-alt'"
                     />
-{{--                    <x-sidebar-navlink--}}
-{{--                        :route="'moder-maps'"--}}
-{{--                        :route-name="'Карта'"--}}
-{{--                        :icon="'bx bxs-map-alt'"--}}
-{{--                    />--}}
                     <x-sidebar-navlink
                         :route="'moder-places'"
                         :route-name="'Мои места'"
@@ -133,6 +128,13 @@
                         :route-name="'Точки'"
                         :icon="'bx bx-street-view'"
                     />
+                    @if(auth()->user()->can_do("add breed"))
+                        <x-sidebar-navlink
+                            :route="'moder-breed.index'"
+                            :route-name="'Породы'"
+                            :icon="'bx bxs-category'"
+                        />
+                    @endif
 
                 </ul>
                 @endmoder

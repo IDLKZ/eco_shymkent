@@ -1,22 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Moder;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MainRequest;
 use App\Models\Breed;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
 class BreedController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('EnsureUserPermission:add breed')->only(['create', 'store','index']);
+        $this->middleware('EnsureUserPermission:edit breed')->only(['edit', 'update']);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $breeds = Breed::latest()->paginate(30);
-        return view('admin.breed.index', compact('breeds'));
+        $breeds = Breed::latest()->where('status', env('APP_MODER_ROLE'))->paginate(30);
+        return view('moder.breed.index', compact('breeds'));
     }
 
     /**
@@ -25,7 +29,7 @@ class BreedController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.breed.create', compact('types'));
+        return view('moder.breed.create', compact('types'));
     }
 
     /**
@@ -34,20 +38,20 @@ class BreedController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-           'title_ru' => 'required',
-           'coefficient' => 'nullable|numeric'
+            'title_ru' => 'required',
+            'coefficient' => 'nullable|numeric'
         ]);
         $data = $request->all();
         if (is_null($request['coefficient'])) {
             $data['coefficient'] = 1;
         }
-        $data['status'] = env('APP_ADMIN_ROLE',1);
+        $data['status'] = env('APP_MODER_ROLE');
         $breed = Breed::add($data);
         if($request->hasFile("image_url")){
             $breed->uploadBreedImage($request->file("image_url"),"image_url");
         }
         toastr('Success', 'success', 'Успешно создан!');
-        return redirect(route('breed.index'));
+        return redirect(route('moder-breed.index'));
     }
 
     /**
@@ -63,9 +67,9 @@ class BreedController extends Controller
      */
     public function edit(string $id)
     {
-        $breed = Breed::findOrFail($id);
+        $breed = Breed::where('status', env('APP_MODER_ROLE'))->findOrFail($id);
         $types = Type::all();
-        return view('admin.breed.edit', compact('breed', 'types'));
+        return view('moder.breed.edit', compact('breed', 'types'));
     }
 
     /**
@@ -79,14 +83,14 @@ class BreedController extends Controller
             'type_id' => 'required'
         ]);
         $data = $request->all();
-        $data['status'] = env('APP_ADMIN_ROLE',1);
+        $data['status'] = env('APP_MODER_ROLE');
         $breed = Breed::findOrFail($id);
         $breed->edit($data, 'image_url');
         if($request->hasFile("image_url")){
             $breed->uploadBreedImage($request->file("image_url"),"image_url");
         }
         toastr('Success', 'success', 'Успешно обновлен!');
-        return redirect(route('breed.index'));
+        return redirect(route('moder-breed.index'));
     }
 
     /**
@@ -94,11 +98,6 @@ class BreedController extends Controller
      */
     public function destroy(string $id)
     {
-        $breed = Breed::findOrFail($id);
-        $breed->removeBreedImage('image_url');
-        $breed->deleteWithRelations($id, 'breed_id');
-        $breed->delete();
-        toastr('Success', 'error', 'Успешно удален!');
-        return redirect()->back();
+
     }
 }

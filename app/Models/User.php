@@ -75,4 +75,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserPlace::class, 'user_id', 'id');
     }
+
+    public function permission(){
+        return $this->hasMany(Permission::class, 'user_id', 'id');
+    }
+
+    public function can_do($title)
+    {
+        return $this->hasMany(Permission::class, 'user_id', 'id')->where(["permission" => $title])->exists();
+    }
 }

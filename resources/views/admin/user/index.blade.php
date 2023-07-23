@@ -36,6 +36,9 @@
                                     <td class="whitespace-nowrap px-6 py-4">{{$item->role->title_ru}}</td>
                                     <td class="flex justify-end py-4">
                                         @if($item->role_id == 2)
+                                            <a href="{{route('get-user-permission',["id"=> $item->id])}}" class="mr-3">
+                                                <i class="fas fa-solid fa-chess-king"></i>
+                                            </a>
                                             <a href="{{route('user-stats', $item->id)}}" class="mr-3">
                                                 <i class="fas fa-chart-line"></i>
                                             </a>

@@ -40,7 +40,7 @@ class ModalMarker extends Component
             $this->breeds = [];
             $this->showBtn = false;
         } else {
-            $this->breeds = Breed::where('status', 1)->where('title_ru', 'like', '%'.$this->search.'%')->get()->toArray();
+            $this->breeds = Breed::where('title_ru', 'like', '%'.$this->search.'%')->get()->toArray();
             if (empty($this->breeds)) {
                 $this->showBtn = true;
             } else {
