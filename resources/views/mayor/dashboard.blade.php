@@ -141,24 +141,38 @@
                 sanitaryData.addRows(dataForSanitary);
 
                 let breedOptions = {
-                        pieHole: 0.4,
+                        // pieHole: 0.4,
                         title: 'Распределение насаждений по породному составу',
                         is3D: true,
-                        sliceVisibilityThreshold: 0.02
+                        sliceVisibilityThreshold: 0.02,
+                        slices: {
+                            0: { offset: 0.1 },
+                            1: { offset: 0.3 },
+                            2: { offset: 0.3 },
+                            3: { offset: 0.2 }
+                        }
                     },
                     areaOptions = {
-                        pieHole: 0.4,
+                        // pieHole: 0.4,
                         title: 'Распределение насаждений по региону',
-                        is3D: true
+                        is3D: true,
+                        slices: {
+                            0: { offset: 0.1, color: 'green' },
+                            1: { offset: 0.2, color: 'orange' },
+                            2: { offset: 0.3, color: 'aquamarine'},
+                            3: { offset: 0.3, color: 'pink'},
+                            4: { },
+                        }
                     },
                     sanitaryOptions = {
                         pieHole: 0.4,
                         title: 'Санитарное состояние зеленых насаждений',
-                        is3D: true,
+                        // is3D: true,
+                        pieStartAngle: 150,
                         slices: {
                             0: { color: 'green' },
-                            1: { color: 'orange' },
-                            2: { color: 'red'}
+                            1: { offset: 0.2, color: 'orange' },
+                            2: { offset: 0.1, color: 'red'}
                         }
                     };
                 let chartBreed = new google.visualization.PieChart(document.getElementById('chartBreed')),
