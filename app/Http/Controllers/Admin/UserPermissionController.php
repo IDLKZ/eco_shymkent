@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class UserPermissionController extends Controller
 {
     public function getUserPermission($id){
+        dd(env("APP_MODER_ROLE"));
         if($user = User::where(["id"=>$id,"role_id"=>env("APP_MODER_ROLE")])->with("permission")->first()){
             return view("admin.user.user_permission",compact("user"));
         }
