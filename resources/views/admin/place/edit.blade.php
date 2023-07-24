@@ -81,12 +81,12 @@
                 buttonsStyling: false
             })
             //    Initialize Map
-            var map = L.map('map',{preferCanvas:true}).setView([42.315524, 69.586943], 12);
+            let map = L.map('map',{preferCanvas:true}).setView([42.315524, 69.586943], 12);
             map.pm.addControls({
                 position: 'topleft',
                 drawCircle: false,
                 drawCircleMarker:false,
-                tooltips:true,
+                tooltips:false,
                 drawPolyline:false,
                 drawRectangle: false,
                 dragMode:false,
@@ -131,7 +131,22 @@
                             if(isArea){
                                 activeAreaGeo = layer;
                             }
-                            layer.bindTooltip(area.title_ru, { permanent: true, offset: [0, 12] });
+
+                            if (area.id == activePlace.id) {
+                                layer.bindTooltip(activePlace.title_ru, { permanent: true, offset: [0, 12] });
+                            } else if (!area.area_id) {
+                                layer.unbindTooltip();
+                            } else {
+                                map.on('zoom', function() {
+                                    console.log(map.getZoom())
+                                    if (map.getZoom() >= 17) {
+                                        layer.bindTooltip(area.title_ru , { permanent: true, offset: [0, 12]});
+                                    } else {
+                                        layer.unbindTooltip();
+                                    }
+                                });
+                            }
+
                             if(isBase){
                                 layer.pm.setOptions({
                                     allowEditing:false,
@@ -156,19 +171,19 @@
             }
 
             //OnCreated
-            map.on('pm:create', ({ shape,layer }) => {
-                if(shape == "Polygon"){
-                    layer.pm.setOptions({
-                        allowSelfIntersection:false,
-                        id:Date.now()
-                    });
-                    layer.setStyle({color:`${$("#bg_color").val()}`})
-                    checkInBounds(layer);
-                    layer.on('pm:change', ({layer, latlngs, shape}) => {
-                        checkInBounds(layer);
-                    })
-                }
-            });
+            // map.on('pm:create', ({ shape,layer }) => {
+            //     if(shape == "Polygon"){
+            //         layer.pm.setOptions({
+            //             allowSelfIntersection:false,
+            //             id:Date.now()
+            //         });
+            //         layer.setStyle({color:`${$("#bg_color").val()}`})
+            //         checkInBounds(layer);
+            //         layer.on('pm:change', ({layer, latlngs, shape}) => {
+            //             checkInBounds(layer);
+            //         })
+            //     }
+            // });
 
             //Event when color changes
             $("#bg_color").on("change",function (e){
