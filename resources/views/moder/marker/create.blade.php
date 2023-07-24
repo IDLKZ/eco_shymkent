@@ -90,7 +90,7 @@
                     shadowAnchor: [4, 62],  // the same for the shadow
                     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
                 }),
-                MARKERS_MAX = 5;
+                MARKERS_MAX = 20;
                 let MARKERS_DATA = [];
             cable.pm.setOptions({
                 allowEditing:false,
