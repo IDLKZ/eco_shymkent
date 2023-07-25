@@ -35,6 +35,7 @@ class AddUserPlace extends Component
         } else {
             $this->show = false;
         }
+        $this->gotoPage(1);
     }
 
     public function updatedSearch(): void
