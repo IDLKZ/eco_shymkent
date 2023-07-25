@@ -48,14 +48,14 @@
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                     <div class="row">
-                        <div class="col-md-6">
-                            <table class="min-w-full text-left text-sm font-light">
+                        <div class="col-sm-12 col-md-12 col-lg-7 overflow-x-scroll">
+                            <table class="min-w-full text-left text-sm font-light overflow-scroll">
                                 <thead class="border-b font-medium dark:border-neutral-500">
                                 <tr>
                                     <th scope="col" class="px-6 py-4">#</th>
                                     <th scope="col" class="px-6 py-4">Наименование</th>
-                                    <th scope="col" class="px-6 py-4">Кол-во посадок</th>
-                                    <th scope="col" class="px-6 py-4 text-center">Действие</th>
+                                    <th scope="col" class="px-6 py-4">Кол-во</th>
+                                    <th scope="col" class="px-6 py-4 text-center"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -81,13 +81,13 @@
                                 {{$placesWithMarkers->links()}}
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-12 col-lg-5 overflow-x-scroll">
                             <table class="min-w-full text-left text-sm font-light">
                                 <thead class="border-b font-medium dark:border-neutral-500">
                                 <tr>
                                     <th scope="col" class="px-6 py-4">#</th>
                                     <th scope="col" class="px-6 py-4">Наименование</th>
-                                    <th scope="col" class="px-6 py-4 text-center">Действие</th>
+                                    <th scope="col" class="px-6 py-4 text-center"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
