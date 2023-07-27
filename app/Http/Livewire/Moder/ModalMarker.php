@@ -89,6 +89,7 @@ class ModalMarker extends Component
         'landing_date' => 'nullable',
         'status_id' => 'nullable',
         'geocode' => 'required',
+        'sanitary_id' => 'required'
 //        'age' => 'required'
     ];
     protected $validationAttributes = [
