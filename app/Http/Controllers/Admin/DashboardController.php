@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\UserPresenceChannel;
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\GeoPosition;
 use App\Models\Marker;
+use App\Models\Place;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Matrix\Builder;
 
 class DashboardController extends Controller
 {
@@ -33,6 +36,14 @@ class DashboardController extends Controller
     public function convert()
     {
         return view('admin.convert');
+    }
+
+    public function map()
+    {
+        $areas = Area::with(['places' => function($query){
+            $query->withCount('markers');
+        }])->get();
+        return view('admin.map', compact('areas'));
     }
 
     public function geo_positions()

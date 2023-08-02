@@ -28,6 +28,6 @@ class Area extends Model
     }
 
     public function markers() {
-        return $this->hasManyThrough(Marker::class, Place::class, 'area_id', 'place_id');
+        return $this->hasManyThrough(Marker::class, Place::class, 'area_id', 'place_id','id','id');
     }
 }

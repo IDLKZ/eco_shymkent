@@ -31,6 +31,11 @@
                         :icon="'bx bxs-map-alt'"
                     />
                     <x-sidebar-navlink
+                        :route="'admin-maps'"
+                        :route-name="'Карта'"
+                        :icon="'bx bxs-map-alt'"
+                    />
+                    <x-sidebar-navlink
                         :route="'place.index'"
                         :route-name="'Места'"
                         :icon="'bx bx-map-pin'"
