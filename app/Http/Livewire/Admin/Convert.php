@@ -42,10 +42,9 @@ class Convert extends Component
         $this->loading = true;
         $breeds = Breed::all();
         foreach ($breeds as $breed) {
-            $markers = Marker::where('breed_id', $breed->id)->get();
-            foreach ($markers as $marker) {
-                $marker->type_id = $breed->type_id;
-            }
+            Marker::where('breed_id', $breed->id)->update([
+                'type_id' => $breed->type_id
+            ]);
         }
         $this->loading = false;
     }
