@@ -6,8 +6,10 @@
         @endforeach
     </select>
 
-{{--    <button type="button" wire:click="convert">Convert</button>--}}
-
+    <button class="btn btn-success bg-success my-3" type="button" wire:click="convert">Актуализировать</button>
+    <div wire:loading>
+        <img src="{{asset('images/loading.gif')}}" width="30" height="30">
+    </div>
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
