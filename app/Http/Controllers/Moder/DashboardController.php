@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Moder;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\Marker;
 use App\Models\UserPlace;
 use Illuminate\Http\Request;
@@ -42,7 +43,17 @@ class DashboardController extends Controller
 
     public function maps()
     {
-
+//        $areas = Area::with(['places' => function($query){
+//            $query->withCount('markers');
+//        }])->get();
+        $areas = [];
+        $places = UserPlace::where('user_id', auth()->id())->with(['place' => function($query){
+            $query->with('area')->withCount('markers');
+        }])->get();
+        foreach ($places as $place) {
+            $areas[] = $place->place->area;
+        }
+        return view('moder.map', compact('places', 'areas'));
     }
     public function places()
     {

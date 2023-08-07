@@ -6,6 +6,7 @@ use App\Traits\Upload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Area extends Model
 {
@@ -23,11 +24,18 @@ class Area extends Model
     ];
 
 
-    public function places():HasMany{
+    public function places() : HasMany
+    {
         return $this->hasMany(Place::class,"area_id","id");
     }
 
-    public function markers() {
+    public function markers() : HasManyThrough
+    {
         return $this->hasManyThrough(Marker::class, Place::class, 'area_id', 'place_id','id','id');
+    }
+
+    public function user_places() : HasManyThrough
+    {
+        return $this->hasManyThrough(UserPlace::class, Place::class, 'id', 'place_id', 'area_id', 'id');
     }
 }

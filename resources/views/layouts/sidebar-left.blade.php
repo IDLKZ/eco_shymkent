@@ -133,6 +133,11 @@
                         :route-name="'Точки'"
                         :icon="'bx bx-street-view'"
                     />
+                    <x-sidebar-navlink
+                        :route="'moder-maps'"
+                        :route-name="'Карта'"
+                        :icon="'bx bxs-map-alt'"
+                    />
                     @if(auth()->user()->can_do("add breed"))
                         <x-sidebar-navlink
                             :route="'moder-breed.index'"
