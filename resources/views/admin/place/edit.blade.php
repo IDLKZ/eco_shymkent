@@ -7,6 +7,7 @@
         <form id="area-form" action="{{route('place.update',$place->id)}}" method="post">
             @csrf
             @method('PUT')
+
             <div class="relative mb-4">
                 <input
                     type="text"
@@ -15,6 +16,21 @@
                     value="{{$area->title_ru}}"
                 />
             </div>
+            @if(count($cats))
+                <select
+                    id="area_id_change"
+                    class="form-select w-full mb-4 @error('category_id') border-red-600 @enderror"
+                    name="category_id">
+                    @foreach($cats as $cat)
+                        <option {{($place->category_id != null ? ($place->category_id == $cat->id ? "selected" : "") : "")}} value="{{$cat->id}}">
+                            {{$cat->title_ru}}
+                        </option>
+                    @endforeach
+                </select>
+                @error('area_id')
+                <div class="text-red-600 mb-2">{{ $message }}</div>
+                @enderror
+            @endif
             <div class="relative mb-4">
                 <input
                     type="text"

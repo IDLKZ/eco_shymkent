@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Area;
 use App\Models\Breed;
 use App\Models\Category;
+use App\Models\CategoryPlace;
 use App\Models\Event;
 use App\Models\Marker;
 use App\Models\Place;
@@ -31,7 +32,8 @@ class PlaceController extends Controller
     {
         $area = Area::find($id);
         $areas = Area::with("places")->get();
-        return view('admin.place.create', compact('area',"areas"));
+        $cats = CategoryPlace::all();
+        return view('admin.place.create', compact('area',"areas", 'cats'));
     }
     /**
      * Show the form for creating a new resource.
@@ -40,7 +42,8 @@ class PlaceController extends Controller
     {
         $areas = Area::all();
         $places = Place::all();
-        return view("admin.place.create",compact("areas","places"));
+        $cats = CategoryPlace::all();
+        return view("admin.place.create",compact("areas","places", 'cats'));
     }
 
     /**
@@ -52,7 +55,8 @@ class PlaceController extends Controller
             'title_ru' => 'required',
             'bg_color' => 'required',
             'geocode' => 'required',
-            'area_id'=>'required'
+            'area_id'=>'required',
+            'category_id' => 'required'
         ]);
         Place::add($request->all());
         return redirect(route('place.index'));
@@ -74,7 +78,8 @@ class PlaceController extends Controller
         $place = Place::findOrFail($id);
         $area = Area::where(["id"=>$place->area_id])->first();
         $places = Place::where(["area_id"=>$area->id])->whereNot("id",$place->id)->get();
-        return view("admin.place.edit",compact("area","place","places"));
+        $cats = CategoryPlace::all();
+        return view("admin.place.edit",compact("area","place","places", 'cats'));
     }
 
     /**
@@ -82,11 +87,11 @@ class PlaceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $this->validate($request, [
             'title_ru' => 'required',
             'bg_color' => 'required',
-            'geocode' => 'required'
+            'geocode' => 'required',
+            'category_id' => 'required'
         ]);
         $place = Place::findOrFail($id);
         $place->edit($request->except(["area_id"]));

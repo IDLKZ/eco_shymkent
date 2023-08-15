@@ -21,7 +21,8 @@ class Place extends Model
         'description_ru',
         'description_kz',
         'image_url',
-        'geocode'
+        'geocode',
+        'category_id'
     ];
 
 
@@ -33,6 +34,11 @@ class Place extends Model
     public function markers(): HasMany
     {
         return $this->hasMany(Marker::class, 'place_id', 'id');
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(CategoryPlace::class);
     }
 
     public function user_places(): HasMany

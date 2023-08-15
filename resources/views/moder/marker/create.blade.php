@@ -260,7 +260,7 @@
             async function loadMarker() {
                 if (map.getZoom() > maxZoom && place.id && search_polygon && toggleShow) {
                     cleanMarker();
-                    const res = await axios.get('/api/markers-all-place', {params: {search_polygon: search_polygon,ids:place.id.toString()}});
+                    const res = await axios.get('/api/markers-for-moder', {params: {search_polygon: search_polygon,ids:place.id.toString()}});
                     if(res.status == 200){
                        if(res.data.length){
                            dataTree = res.data;

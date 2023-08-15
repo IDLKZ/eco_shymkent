@@ -22,6 +22,22 @@
                 <div class="text-red-600 mb-2">{{ $message }}</div>
                 @enderror
             @endif
+            @if(count($cats))
+                <label for="">Выберите категорию</label>
+                <select
+                    id="area_id_change"
+                    class="form-select w-full mb-4 @error('category_id') border-red-600 @enderror"
+                    name="category_id">
+                    @foreach($cats as $cat)
+                        <option data-area="{{$cat}}" value="{{$cat->id}}">
+                            {{$cat->title_ru}}
+                        </option>
+                    @endforeach
+                </select>
+                @error('area_id')
+                <div class="text-red-600 mb-2">{{ $message }}</div>
+                @enderror
+            @endif
             <div class="relative mb-4">
                 <input
                     type="text"

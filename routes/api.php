@@ -30,6 +30,7 @@ Route::group([],function (){
 
    Route::get("markers-all",[MarkerController::class,"getAllMarker"]);
    Route::get("markers-all-place",[MarkerController::class,"getPlacesMarker"]);
+   Route::get("markers-for-moder",[MarkerController::class,"getMarkersForModer"]);
 
    Route::get("get-system-all",[SystemController::class,"getAllSystemData"]);
    Route::get("get-user-location/{userId}/{location}",[UserController::class,"user_presence"]);

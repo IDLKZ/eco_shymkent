@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AreaController as AdminAreaController;
 use App\Http\Controllers\Admin\BreedController as AdminBreedController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\CategoryPlaceController as AdminCategoryPlaceController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\SanitaryController as AdminSanitaryController;
@@ -63,6 +64,8 @@ Route::middleware('auth')->group(function () {
         Route::any('place/search', [AdminPlaceController::class, 'search'])->name('place.search');
         Route::resource('breed', AdminBreedController::class);
         Route::resource('category', AdminCategoryController::class);
+        Route::resource('category-places', AdminCategoryPlaceController::class);
+        Route::resource('sanitary', AdminSanitaryController::class);
         Route::resource('sanitary', AdminSanitaryController::class);
         Route::resource('status', AdminStatusController::class);
         Route::resource('event', AdminEventController::class);
