@@ -107,6 +107,61 @@
         <div id="chartSanitary" class="pie-chart"></div>
     </div>
 
+    <div class="pt-4 mt-2">
+        <table class="min-w-full text-left text-sm font-dark bg-white">
+            <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+                <th scope="col" class="px-6 py-4">#</th>
+                <th scope="col" class="px-6 py-4">Район</th>
+                <th scope="col" class="px-6 py-4">Население</th>
+                <th scope="col" class="px-6 py-4">Кол-во посадок</th>
+                <th scope="col" class="px-6 py-4">Результат</th>
+                <th scope="col" class="px-6 py-4">Норматив</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($populations as $population)
+                <tr class="border-b dark:border-neutral-500">
+                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{$loop->iteration}}</td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        @if($population->area)
+                            {{$population->area->title_ru}}
+                        @else
+                            -
+                        @endif
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        {{$population->count}}
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        @if($areas->find($population->area_id))
+                            {{($areas->find($population->area_id))->markers_count}} <br>
+                            <span class="text-danger">
+                                - {{round((($population->count*10)/9)-($areas->find($population->area_id))->markers_count)}}
+                            </span>
+                        @else
+                            -
+                        @endif
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        @if($areas->find($population->area_id))
+                            {{round((($areas->find($population->area_id))->markers_count)*9 / $population->count, 2)}} м<sup>2</sup>/чел
+                            <br>
+                            <span class="text-danger">- {{10-round((($areas->find($population->area_id))->markers_count)*9 / $population->count, 2)}} м<sup>2</sup>/чел</span>
+                        @else
+                            -
+                        @endif
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        10 м<sup>2</sup>/чел (мин) <br>
+                        50 м<sup>2</sup>/чел (норма)
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+
 
 
 @push('js')
