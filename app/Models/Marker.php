@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 use MatanYadaev\EloquentSpatial\Objects\Point;
@@ -38,12 +39,12 @@ class Marker extends Model
 
     protected array $dates = ['created_at', 'updated_at']; // Поля времени для мутатора
 
-    public function getCreatedAtAttribute($value)
+    public function getCreatedAtAttribute($value): Carbon
     {
         return Carbon::parse($value)->setTimezone('Asia/Almaty');
     }
 
-    public function setCreatedAtAttribute($value)
+    public function setCreatedAtAttribute($value): void
     {
         $this->attributes['created_at'] = Carbon::parse($value)->setTimezone('UTC');
     }
@@ -95,6 +96,11 @@ class Marker extends Model
     public function user()
     {
         return $this->belongsTo(User::class)->select(['name','email', 'image_url']);
+    }
+
+    public function moder(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public static function searchable($request, $bool = false)

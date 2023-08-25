@@ -12,6 +12,7 @@ use App\Models\Place;
 use App\Models\Sanitary;
 use App\Models\Status;
 use App\Models\Type;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,17 @@ class MarkerController extends Controller
 
     public function getAllMarkers()
     {
-        $markers = Marker::with('place', 'area', 'breed')->latest()->paginate(30);
+        $markers = Marker::with('place', 'area', 'breed', 'moder')->latest()->paginate(30);
+        return view('admin.marker.all-markers', compact('markers'));
+    }
+
+    public function filterMarkers(Request $request)
+    {
+        if ($request['created_at'] == null) {
+            $markers = Marker::with('place', 'area', 'breed', 'moder')->latest()->paginate(30);
+        } else {
+            $markers = Marker::with('place', 'area', 'breed', 'moder')->whereDate('created_at', Carbon::parse($request['created_at']))->latest()->paginate(30);
+        }
         return view('admin.marker.all-markers', compact('markers'));
     }
 

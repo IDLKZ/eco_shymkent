@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
             'index', 'edit','destroy',"update"
         ]);
         Route::get('get-all-markers', [AdminMarkerController::class, 'getAllMarkers'])->name('get-all-markers');
+        Route::any('filter-markers', [AdminMarkerController::class, 'filterMarkers'])->name('filter-markers');
     });
 
     Route::middleware('ModerMiddleware')->prefix('moder')->group(function () {

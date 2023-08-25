@@ -1,5 +1,22 @@
 <x-app-layout>
     <div class="row pt-4 mt-2">
+
+        <form action="{{route('filter-markers')}}" method="post">
+            @csrf
+            <div class="relative mb-4" data-te-input-wrapper-init>
+                <label>Выберите дату</label>
+                <input type="date" name="created_at" class="form-control">
+            </div>
+
+            <div class="relative mb-4 flex items-end">
+                <button
+                    type="submit"
+                    class="inline-block rounded bg-primary px-6 py-3 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                    Найти
+                </button>
+            </div>
+        </form>
+
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -17,6 +34,7 @@
                                 <thead class="border-b font-medium dark:border-neutral-500">
                                 <tr>
                                     <th scope="col" class="px-6 py-4">#</th>
+                                    <th scope="col" class="px-6 py-4">Куратор</th>
                                     <th scope="col" class="px-6 py-4">Район</th>
                                     <th scope="col" class="px-6 py-4">Место</th>
                                     <th scope="col" class="px-6 py-4">Порода</th>
@@ -28,6 +46,7 @@
                                 @foreach($markers as $item)
                                     <tr class="border-b dark:border-neutral-500">
                                         <td class="whitespace-nowrap px-6 py-4 font-medium">{{$markers->firstItem() + $loop->index}}</td>
+                                        <td class="whitespace-nowrap px-6 py-4 font-medium">{{$item->moder != null ? $item->moder->name : ''}}</td>
                                         <td class="whitespace-nowrap px-6 py-4">
                                             @if($item->place)
                                                 @if($item->place->area)
