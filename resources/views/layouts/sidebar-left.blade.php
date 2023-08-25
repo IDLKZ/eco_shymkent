@@ -61,6 +61,11 @@
                         :icon="'fas fa-map'"
                     />
                     <x-sidebar-navlink
+                        :route="'get-all-markers'"
+                        :route-name="'Деревья'"
+                        :icon="'fa fa-tree'"
+                    />
+                    <x-sidebar-navlink
                         :route="'reports.index'"
                         :route-name="'Сообщения'"
                         :icon="'fas fa-solid fa-exclamation'"

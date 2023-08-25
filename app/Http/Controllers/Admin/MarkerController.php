@@ -28,6 +28,11 @@ class MarkerController extends Controller
         return view("admin.marker.index",compact("places","breeds","types","status","sanitaries","events","categories"));
     }
 
+    public function getAllMarkers()
+    {
+        $markers = Marker::with('place', 'area', 'breed')->latest()->paginate(30);
+        return view('admin.marker.all-markers', compact('markers'));
+    }
 
     public function edit(Request $request){
         $query = Marker::query()->where(["place_id" => $request->get("place_id"),"breed_id" => $request->get("breed_id")]);

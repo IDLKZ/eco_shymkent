@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Upload;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +35,18 @@ class Marker extends Model
         'geocode',
         'image_url'
     ];
+
+    protected array $dates = ['created_at', 'updated_at']; // Поля времени для мутатора
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->setTimezone('Asia/Almaty');
+    }
+
+    public function setCreatedAtAttribute($value)
+    {
+        $this->attributes['created_at'] = Carbon::parse($value)->setTimezone('UTC');
+    }
 
     protected $casts = [
         'point' => Point::class,

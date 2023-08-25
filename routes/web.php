@@ -88,6 +88,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('reports', AdminReportController::class)->only([
             'index', 'edit','destroy',"update"
         ]);
+        Route::get('get-all-markers', [AdminMarkerController::class, 'getAllMarkers'])->name('get-all-markers');
     });
 
     Route::middleware('ModerMiddleware')->prefix('moder')->group(function () {
