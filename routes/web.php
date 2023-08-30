@@ -76,7 +76,9 @@ Route::middleware('auth')->group(function () {
         Route::get("/change-marker/{id}",[AdminPlaceController::class,"changeMarker"])->name("change-marker");
         Route::put("/update-marker/{id}",[AdminPlaceController::class,"updateMarker"])->name("update-marker");
         Route::get("/delete-markers-by-place/{id}",[AdminPlaceController::class,"deleteByPlace"])->name("delete-markers-by-place-id");
+        Route::get("/change-markers-by-place/{id}",[AdminPlaceController::class,"changeByPlace"])->name("change-markers-by-place-id");
         Route::put("/delete-markers-by-place-stats/{id}",[AdminPlaceController::class,"deleteByPlaceStats"])->name("delete-markers-by-place-stats");
+        Route::put("/change-markers-by-place-stats/{id}",[AdminPlaceController::class,"changeByPlaceState"])->name("change-markers-by-place-stats");
         Route::get('users-check', [AdminDashboardController::class, 'geo_positions'])->name('admin-check-users');
         Route::get('user-by-geo/{id}', [AdminDashboardController::class, 'getByGeo'])->name('admin-user-by-geo');
         Route::get('user-stats/{id}', [AdminUserController::class, 'stats'])->name('user-stats');

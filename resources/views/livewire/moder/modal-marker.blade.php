@@ -1,3 +1,5 @@
+
+
 <div>
     {{--<div class="mb-2">
         <select wire:model="category_id" name="category_id">

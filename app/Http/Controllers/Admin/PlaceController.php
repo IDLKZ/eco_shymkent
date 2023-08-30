@@ -181,4 +181,30 @@ class PlaceController extends Controller
         }
         return redirect()->back();
     }
+
+
+    public function changeByPlace($id){
+        $place = Place::find($id);
+        if($place){
+            $places = Place::where("id","!=",$place->id)->with("area")->get();
+            return view("admin.marker.change-markers-place",compact("place","places"));
+        }
+        toastr()->warning('Посадка не найдена!');
+        return redirect('/404');
+    }
+
+    public function changeByPlaceState(Request $request,$id){
+        $request->validate(["geocode"=>"required","to_place"=>"required|exists:places,id"]);
+        try{
+            $polygon = Polygon::fromJson($request->get("geocode"));
+            $query = Marker::whereContains($polygon, "point")->where(["place_id"=>$id]);
+            $markersCount = $query->count();
+            $query->update(["place_id" => $request->get("to_place")]);
+            toastr()->success("Перемещено насаждений: ". $markersCount,"Success");
+        }
+        catch (\Exception $exception){
+            toastr()->error($exception->getMessage(),"Error");
+        }
+        return redirect()->back();
+    }
 }

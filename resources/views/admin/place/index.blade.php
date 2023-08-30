@@ -52,6 +52,9 @@
 
                                         </td>
                                         <td class="flex justify-center py-4">
+                                            <a href="{{route('change-markers-by-place-id', ["id"=>$item->id])}}" class="mr-3">
+                                                <i class="fas fa-tree text-blue-500"></i>
+                                            </a>
                                             <a href="{{route('delete-markers-by-place-id', ["id"=>$item->id])}}" class="mr-3">
                                                 <i class="fas fa-tree text-red-500"></i>
                                             </a>
