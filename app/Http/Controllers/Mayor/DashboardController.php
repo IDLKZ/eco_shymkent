@@ -56,6 +56,10 @@ class DashboardController extends Controller
 
         return view('mayor.statistics', compact('markers', 'forExp'));
     }
+    public function statisticsByTree()
+    {
+        return view('mayor.statistics-by-trees');
+    }
 
     public function search(Request $request)
     {

@@ -34,6 +34,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('mayor', function () {
             return auth()->user()->role_id == env('APP_MAYOR_ROLE', 3);
         });
+        Blade::if('agronom', function () {
+            return auth()->user()->role_id == 4;
+        });
         view()->composer('layouts.sidebar-left', function($view){
             $view->with('counts', Breed::where('status', 2)->count());
         });

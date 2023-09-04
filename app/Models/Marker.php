@@ -89,6 +89,8 @@ class Marker extends Model
     {
         return $this->belongsTo(Place::class);
     }
+
+
     public static function query(): SpatialBuilder
     {
         return parent::query();

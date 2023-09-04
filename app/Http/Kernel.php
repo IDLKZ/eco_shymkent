@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\AgronomMiddleware;
 use App\Http\Middleware\BeforeSessionFlush;
 use App\Http\Middleware\EnsureUserPermission;
 use App\Http\Middleware\MayorMiddleware;
@@ -75,7 +76,8 @@ class Kernel extends HttpKernel
         'AdminMiddleware' => AdminMiddleware::class,
         'ModerMiddleware' => ModeratorMiddleware::class,
         'MayorMiddleware' => MayorMiddleware::class,
-        "EnsureUserPermission" => EnsureUserPermission::class
+        "AgronomMiddleware"=>AgronomMiddleware::class,
+        "EnsureUserPermission" => EnsureUserPermission::class,
     ];
 
     public function terminate($request, $response): void

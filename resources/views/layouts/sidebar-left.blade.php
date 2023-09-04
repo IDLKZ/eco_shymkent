@@ -165,9 +165,38 @@
                         :route-name="'Статистика'"
                         :icon="'bx bx-home-alt'"
                     />
+                    <x-sidebar-navlink
+                        :route="'mayor-statistics-by-trees'"
+                        :route-name="'Статистика По Состоянию'"
+                        :icon="'bx bx-home-alt'"
+                    />
 
                 </ul>
                 @endmayor
+                @agronom
+                <ul class="nav nav-main">
+                    <x-sidebar-navlink
+                        :route="'mayor-dashboard'"
+                        :route-name="'Главная'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'mayor-statistics'"
+                        :route-name="'Статистика'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'mayor-statistics-by-trees'"
+                        :route-name="'Статистика По Состоянию'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'all-trees'"
+                        :route-name="'Просмотр насаждений'"
+                        :icon="'fas fa-map'"
+                    />
+                </ul>
+                @endagronom
                 <ul class="nav nav-main">
                     <li class="nav-parent">
                         <form action="{{route("logout")}}" method="post">

@@ -31,6 +31,8 @@ class Place extends Model
         return $this->belongsTo(Area::class);
     }
 
+
+
     public function markers(): HasMany
     {
         return $this->hasMany(Marker::class, 'place_id', 'id');

@@ -35,7 +35,11 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(RouteServiceProvider::AdminHome);
         } else if (Auth::user()->role_id == env('APP_MODER_ROLE', 2)) {
             return redirect()->intended(RouteServiceProvider::ModerHome);
-        } else {
+        }
+        else if (Auth::user()->role_id == 4) {
+            return redirect()->intended(RouteServiceProvider::AgronomHome);
+        }
+        else {
             return redirect()->intended(RouteServiceProvider::MayorHome);
         }
     }
