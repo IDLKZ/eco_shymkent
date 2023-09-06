@@ -35,6 +35,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/logout', function (){
+    Auth::logout();
+    return redirect(\route('login'));
+});
 
 Route::get('/', [HomeController::class,"index"]);
 Route::get('/map', [HomeController::class,"map"])->name("front-map");
