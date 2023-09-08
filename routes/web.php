@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('AdminMiddleware')->prefix('admin')->group(function () {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+        Route::get('/test', [AdminDashboardController::class, 'test'])->name('admin-dashboard');
         Route::get('converts', [AdminDashboardController::class, 'convert'])->name('admin-convert');
         Route::get('maps', [AdminDashboardController::class, 'map'])->name('admin-maps');
         Route::resource('area', AdminAreaController::class);
