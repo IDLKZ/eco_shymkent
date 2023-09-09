@@ -61,9 +61,6 @@ class DashboardController extends Controller
         return view("admin.geo.all_trees");
     }
 
-    public function test(){
 
-        return view("admin.test");
-    }
 
 }

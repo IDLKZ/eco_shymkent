@@ -41,6 +41,11 @@
                         :icon="'bx bx-map-pin'"
                     />
                     <x-sidebar-navlink
+                        :route="'bush.index'"
+                        :route-name="'Кусты'"
+                        :icon="'bx bxs-tree'"
+                    />
+                    <x-sidebar-navlink
                         :route="'admin-check-users'"
                         :route-name="'Геопозиция кураторов'"
                         :icon="'bx bx-current-location'"
@@ -137,6 +142,11 @@
                         :route="'trees.index'"
                         :route-name="'Точки'"
                         :icon="'bx bx-street-view'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'moder-bush-index'"
+                        :route-name="'Кусты'"
+                        :icon="'bx bxs-tree'"
                     />
                     <x-sidebar-navlink
                         :route="'moder-maps'"

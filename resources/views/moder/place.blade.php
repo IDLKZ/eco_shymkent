@@ -44,7 +44,9 @@
                                         <a href="{{route('moder-markers', $item->place->id)}}" class="mr-3">
                                             <img src="{{asset('images/tree.svg')}}" width="30">
                                         </a>
-
+                                        <a href="{{route('moder-bush-create', $item->place->id)}}" class="mr-3">
+                                            <i class='bx bxs-tree text-black' style="font-size: 30px" ></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

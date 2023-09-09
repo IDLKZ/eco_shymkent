@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\SanitaryTypeController as AdminSanitaryTypeContro
 use App\Http\Controllers\Admin\MarkerController as AdminMarkerController;
 use App\Http\Controllers\Admin\BackupController as AdminBackupController;
 use App\Http\Controllers\Admin\ReportController as AdminReportController;
+use App\Http\Controllers\Admin\BushController as AdminBushController;
+use App\Http\Controllers\Moder\BushController as ModerBushController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Moder\DashboardController as ModerDashboardController;
 use App\Http\Controllers\Moder\MarkerController as ModerMarkerController;
@@ -57,7 +59,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('AdminMiddleware')->prefix('admin')->group(function () {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
-        Route::get('/test', [AdminDashboardController::class, 'test'])->name('admin-dashboard');
         Route::get('converts', [AdminDashboardController::class, 'convert'])->name('admin-convert');
         Route::get('maps', [AdminDashboardController::class, 'map'])->name('admin-maps');
         Route::resource('area', AdminAreaController::class);
@@ -75,6 +76,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('status', AdminStatusController::class);
         Route::resource('event', AdminEventController::class);
         Route::resource('type', AdminTypeController::class);
+        Route::resource('bush', AdminBushController::class);
         Route::resource('sanitary_type', AdminSanitaryTypeController::class);
         Route::get("all-trees",[AdminDashboardController::class,"all_trees"])->name("all-trees");
         Route::get('add-place/{id?}', [AdminPlaceController::class, 'addPlace'])->name('admin.add-place');
@@ -106,6 +108,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/markers/by-area/{area_id}', [ModerMarkerController::class, 'index'])->name('moder-markers');
         Route::post('store-marker', [ModerMarkerController::class, 'store'])->name('store-marker');
         Route::resource('trees', ModerTreeController::class);
+        Route::get('/bush', [ModerBushController::class,"index"])->name("moder-bush-index");
+        Route::get('/bush-create/{place_id}',  [ModerBushController::class,"create"])->name("moder-bush-create");
+        Route::post('/bush-store',  [ModerBushController::class,"store"])->name("moder-bush-store");
         Route::resource('moder-breed', ModerBreedController::class);
     });
 

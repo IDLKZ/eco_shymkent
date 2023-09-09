@@ -38,6 +38,11 @@ class Place extends Model
         return $this->hasMany(Marker::class, 'place_id', 'id');
     }
 
+    public function bushes(): HasMany
+    {
+        return $this->hasMany(Bush::class, 'place_id', 'id');
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(CategoryPlace::class);
