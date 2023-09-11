@@ -101,7 +101,7 @@
                     class="peer block min-h-[auto] w-full rounded border-1 @error('height') border-red-600 @enderror"
                     name="height"
                     value="{{$bush->height}}"
-                    placeholder="Высота в сантиметрах" />
+                    placeholder="Высота в метрах" />
                 @error('height')
                 <div class="text-red-600">{{ $message }}</div>
                 @enderror
