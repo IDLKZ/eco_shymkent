@@ -186,17 +186,17 @@
                 @agronom
                 <ul class="nav nav-main">
                     <x-sidebar-navlink
-                        :route="'mayor-dashboard'"
+                        :route="'agronom-dashboard'"
                         :route-name="'Главная'"
                         :icon="'bx bx-home-alt'"
                     />
                     <x-sidebar-navlink
-                        :route="'mayor-statistics'"
+                        :route="'agronom-statistics'"
                         :route-name="'Статистика'"
                         :icon="'bx bx-home-alt'"
                     />
                     <x-sidebar-navlink
-                        :route="'mayor-statistics-by-trees'"
+                        :route="'agronom-statistics-by-trees'"
                         :route-name="'Статистика По Состоянию'"
                         :icon="'bx bx-home-alt'"
                     />

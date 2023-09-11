@@ -16,7 +16,7 @@ class AgronomMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->role_id == 4) {
+        if (Auth::user()->role_id == 4 || Auth::user()->role_id==3 || Auth::user()->role_id == 1) {
             return $next($request);
         }
         abort(404);

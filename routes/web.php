@@ -127,12 +127,12 @@ Route::middleware('auth')->group(function () {
         Route::get("all-trees",[AdminDashboardController::class,"all_trees"])->name("all-trees");
         Route::get("/change-marker/{id}",[AdminPlaceController::class,"changeMarker"])->name("change-marker");
         Route::put("/update-marker/{id}",[AdminPlaceController::class,"updateMarker"])->name("update-marker");
-        Route::get('', [MayorDashboardController::class, 'index'])->name('mayor-dashboard');
-        Route::get('statistics', [MayorDashboardController::class, 'statistics'])->name('mayor-statistics');
-        Route::get('statistics-by-tree', [MayorDashboardController::class, 'statisticsByTree'])->name('mayor-statistics-by-trees');
+        Route::get('', [MayorDashboardController::class, 'index'])->name('agronom-dashboard');
+        Route::get('statistics', [MayorDashboardController::class, 'statistics'])->name('agronom-statistics');
+        Route::get('statistics-by-tree', [MayorDashboardController::class, 'statisticsByTree'])->name('agronom-statistics-by-trees');
         Route::get('search', [MayorDashboardController::class, 'search'])->name('mayor-search');
         Route::post('search', [MayorDashboardController::class, 'search'])->name('mayor-search');
-        Route::get('mayor-marker-show/{id}', [MayorDashboardController::class, 'marker_edit'])->name('mayor-marker-show');
+        Route::get('mayor-marker-show/{id}', [MayorDashboardController::class, 'marker_edit'])->name('agronom-marker-show');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

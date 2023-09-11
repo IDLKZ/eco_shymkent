@@ -319,7 +319,7 @@
                 $("#buttonSendMarker").prop('disabled', true);
             });
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxNativeZoom: 18,maxZoom:28}).addTo(map);
+            L.tileLayer('http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}', {maxNativeZoom: 18,maxZoom:28}).addTo(map);
 
         </script>
     @endpush
