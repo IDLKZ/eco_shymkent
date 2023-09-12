@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
     @endpush
     <div class="container mx-auto py-5">
-        <h1 class="mb-4 rounded-lg bg-secondary-100 px-6 py-5 text-base text-secondary-800">Удалить посадки места - {{$place->title_ru}}</h1>
+        <h1 class="mb-4 rounded-lg bg-secondary-100 px-6 py-5 text-base text-secondary-800">Изменить посадки места - {{$place->title_ru}}</h1>
         <form id="area-form" action="{{route("change-markers-by-place-stats",["id"=>$place->id])}}"  method="post">
             @csrf
             @method('PUT')
@@ -212,7 +212,7 @@
                 $("#geocode").attr("value",JSON.stringify(dataPolygons));
             }
             // L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2VwbGF5a3oyMDIwIiwiYSI6ImNrcTRxd3I3czB2eHgydm8wOHR2NW40OTEifQ.a08RNc7xB3Tm1pGai2NNCQ', {subdomains:['mt0','mt1','mt2','mt3'], maxZoom:25}).addTo(map);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxNativeZoom: 18,maxZoom:28}).addTo(map);
         </script>
     @endpush
 </x-app-layout>
