@@ -12,6 +12,7 @@ use App\Models\Place;
 use App\Models\Sanitary;
 use App\Models\Status;
 use App\Models\Type;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -32,17 +33,23 @@ class MarkerController extends Controller
     public function getAllMarkers()
     {
         $markers = Marker::with('place', 'area', 'breed', 'moder')->latest()->paginate(30);
-        return view('admin.marker.all-markers', compact('markers'));
+        $users = User::where('role_id', 2)->get();
+        return view('admin.marker.all-markers', compact('markers', 'users'));
     }
 
     public function filterMarkers(Request $request)
     {
-        if ($request['created_at'] == null) {
-            $markers = Marker::with('place', 'area', 'breed', 'moder')->latest()->paginate(30);
-        } else {
+        $users = User::where('role_id', 2)->get();
+        if ($request['created_at'] != null && $request['user_id'] != 0) {
+            $markers = Marker::with('place', 'area', 'breed', 'moder')->where('user_id', $request['user_id'])->whereDate('created_at', Carbon::parse($request['created_at']))->latest()->paginate(30);
+        } elseif ($request['user_id'] == 0  && $request['created_at'] != null) {
             $markers = Marker::with('place', 'area', 'breed', 'moder')->whereDate('created_at', Carbon::parse($request['created_at']))->latest()->paginate(30);
+        } elseif ($request['user_id'] != 0 && $request['created_at'] == null) {
+            $markers = Marker::with('place', 'area', 'breed', 'moder')->where('user_id', $request['user_id'])->latest()->paginate(30);
+        } else {
+            $markers = Marker::with('place', 'area', 'breed', 'moder')->latest()->paginate(30);
         }
-        return view('admin.marker.all-markers', compact('markers'));
+        return view('admin.marker.all-markers', compact('markers', 'users'));
     }
 
     public function edit(Request $request){

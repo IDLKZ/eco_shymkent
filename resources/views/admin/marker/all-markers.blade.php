@@ -3,10 +3,23 @@
 
         <form action="{{route('filter-markers')}}" method="post">
             @csrf
-            <div class="relative mb-4" data-te-input-wrapper-init>
-                <label>Выберите дату</label>
-                <input type="date" name="created_at" class="form-control">
+
+            <div class="flex">
+                <div class="relative mb-4" data-te-input-wrapper-init>
+                    <label>Выберите дату</label>
+                    <input type="date" name="created_at" class="form-control">
+                </div>
+                <div class="relative mb-4 mx-3" data-te-input-wrapper-init>
+                    <label>Выберите куратора</label>
+                    <select class="form-control" name="user_id">
+                        <option selected value="0">Все</option>
+                        @foreach($users as $user)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
+
 
             <div class="relative mb-4 flex items-end">
                 <button
