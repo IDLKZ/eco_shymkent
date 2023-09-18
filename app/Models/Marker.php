@@ -44,10 +44,10 @@ class Marker extends Model
         return Carbon::parse($value)->setTimezone('Asia/Almaty');
     }
 
-    public function setCreatedAtAttribute($value): void
-    {
-        $this->attributes['created_at'] = Carbon::parse($value)->setTimezone('UTC');
-    }
+//    public function setCreatedAtAttribute($value): void
+//    {
+//        $this->attributes['created_at'] = Carbon::parse($value)->setTimezone('UTC');
+//    }
 
     protected $casts = [
         'point' => Point::class,
