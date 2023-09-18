@@ -59,7 +59,8 @@
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="table-responsive">
-                                <table class="table">
+                                <button id="button" class="btn btn-info my-2" onclick="htmlTableToExcel('xlsx')">ЭКСПОРТ В EXCEL</button>
+                                <table class="table" id="tblToExcl">
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -70,7 +71,17 @@
                                         <th scope="col">Аварийные</th>
                                     </tr>
                                     </thead>
+                                    @php
+                                        $total_health = 0;
+                                        $total_bad = 0;
+                                        $total_critic = 0;
+                                    @endphp
                                     @foreach($places as $placeItem)
+                                        @php
+                                            $total_health +=$placeItem->sanitary_health;
+                                            $total_bad +=$placeItem->sanitary_bad;
+                                            $total_critic +=$placeItem->sanitary_critic;
+                                        @endphp
                                         <tr>
                                             <th>{{$placeItem->id}}</th>
                                             <td>{{$placeItem->title_ru}}</td>
@@ -80,6 +91,16 @@
                                             <td class="text-red-500">{{$placeItem->sanitary_critic}}</td>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <th colspan="3">Итого</th>
+                                        <td class="text-success">{{$total_health}}</td>
+                                        <td class="text-warning">{{$total_bad}}</td>
+                                        <td class="text-red-500">{{$total_critic}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="5">Общий итог</th>
+                                        <td class="text-dark">{{$total_health + $total_bad + $total_critic}}</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -178,5 +199,16 @@
 
 
 </div>
+@push("js")
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script>
+        function htmlTableToExcel(type){
+            var data = document.getElementById('tblToExcl');
+            var excelFile = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
+            XLSX.write(excelFile, { bookType: type, bookSST: true, type: 'base64' });
+            XLSX.writeFile(excelFile, 'Состояние деревьев.' + type);
+        }
+    </script>
+@endpush
 
 

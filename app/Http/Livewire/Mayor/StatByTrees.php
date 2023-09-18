@@ -16,6 +16,7 @@ use Livewire\Component;
 class StatByTrees extends Component
 {
     public $areas;
+    public $area;
     public $places;
     public $categories;
     public $sanitaries;
@@ -37,6 +38,7 @@ class StatByTrees extends Component
     {
         if($this->area_id){
             DB::statement("SET SQL_MODE=''");
+            $this->area = Area::find($this->area_id);
             $query = Place::where(["area_id"=>$this->area_id]);
             if($this->category_id){
                 $query->where(["category_id"=>$this->category_id]);
