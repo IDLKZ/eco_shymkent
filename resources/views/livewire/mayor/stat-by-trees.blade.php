@@ -83,7 +83,7 @@
                                             $total_critic +=$placeItem->sanitary_critic;
                                         @endphp
                                         <tr>
-                                            <th>{{$placeItem->id}}</th>
+                                            <th>{{$loop->iteration}}</th>
                                             <td>{{$placeItem->title_ru}}</td>
                                             <td>{{$placeItem->category->title_ru}}</td>
                                             <td class="text-success">{{$placeItem->sanitary_health}}</td>
