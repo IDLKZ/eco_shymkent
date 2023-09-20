@@ -64,7 +64,6 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">ID</th>
                                         <th scope="col">Наименование</th>
                                         <th scope="col">Категория</th>
                                         <th scope="col">Здоровые</th>
@@ -85,7 +84,6 @@
                                         @endphp
                                         <tr>
                                             <th>{{$loop->iteration}}</th>
-                                            <th>{{$placeItem->id}}</th>
                                             <td>{{$placeItem->title_ru}}</td>
                                             <td>{{$placeItem->category->title_ru}}</td>
                                             <td class="text-success">{{$placeItem->sanitary_health}}</td>
