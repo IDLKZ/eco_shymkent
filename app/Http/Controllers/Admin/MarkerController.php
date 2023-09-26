@@ -115,16 +115,24 @@ class MarkerController extends Controller
 
 
     public function update_by_place(){
-        //        ini_set('memory_limit', '-1');
-//        ini_set('max_execution_time', 300); // 5 minutes
-//        $markers = Marker::all();
-//        $incorrect_area = [];
-//        foreach ($markers as $markerItem){
-//            $place = Place::find($markerItem->place_id);
-//            if($place->area_id != $markerItem->area_id){
-//                array_push($incorrect_area,$markerItem->id);
-//            }
-//        }
-//        dd($incorrect_area);
+        try{
+            ini_set('memory_limit', '-1');
+            ini_set('max_execution_time', 600); // 10 minutes
+            $data = [];
+            $places = Place::all();
+            foreach ($places as $place){
+                Marker::where(["place_id" => $place->id])->update(["area_id" => $place->area_id]);
+            }
+            foreach ($places as $place){
+                $count = Marker::where(["place_id" => $place->id])->count();
+                $data[$place->id] = $count;
+            }
+            toastr()->success("Обновлено!");
+        }
+        catch (Exception $exception){
+            toastr()->error($exception->getMessage());
+        }
+        return redirect()->back();
+
     }
 }

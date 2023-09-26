@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('type', AdminTypeController::class);
         Route::resource('bush', AdminBushController::class);
         Route::resource('sanitary_type', AdminSanitaryTypeController::class);
+        Route::post("update-marker-by-place",[AdminMarkerController::class,"update_by_place"])->name("update-marker-by-place");
         Route::get("all-trees",[AdminDashboardController::class,"all_trees"])->name("all-trees");
         Route::get('add-place/{id?}', [AdminPlaceController::class, 'addPlace'])->name('admin.add-place');
         Route::get("/change-marker/{id}",[AdminPlaceController::class,"changeMarker"])->name("change-marker");
