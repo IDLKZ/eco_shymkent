@@ -37,6 +37,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('agronom', function () {
             return auth()->user()->role_id == 4;
         });
+        Blade::if('consumer', function () {
+            return auth()->user()->role_id == 5;
+        });
         view()->composer('layouts.sidebar-left', function($view){
             $view->with('counts', Breed::where('status', 2)->count());
         });

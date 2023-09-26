@@ -199,7 +199,9 @@ class PlaceController extends Controller
             $polygon = Polygon::fromJson($request->get("geocode"));
             $query = Marker::whereContains($polygon, "point")->where(["place_id"=>$id]);
             $markersCount = $query->count();
-            $query->update(["place_id" => $request->get("to_place")]);
+            $to_place = Place::find("to_place");
+            $area = Area::find($to_place->area_id);
+            $query->update(["place_id" => $to_place->id,"area_id"=>$area->id]);
             toastr()->success("Перемещено насаждений: ". $markersCount,"Success");
         }
         catch (\Exception $exception){

@@ -180,7 +180,11 @@
                         :route-name="'Статистика По Состоянию'"
                         :icon="'bx bx-home-alt'"
                     />
-
+                    <x-sidebar-navlink
+                        :route="'mayor-statistics-tree'"
+                        :route-name="'Статистика по деревьям'"
+                        :icon="'bx bx-home-alt'"
+                    />
                 </ul>
                 @endmayor
                 @agronom
@@ -205,8 +209,37 @@
                         :route-name="'Просмотр насаждений'"
                         :icon="'fas fa-map'"
                     />
+                    <x-sidebar-navlink
+                        :route="'agronom-statistics-tree'"
+                        :route-name="'Статистика по деревьям'"
+                        :icon="'bx bx-home-alt'"
+                    />
                 </ul>
                 @endagronom
+                @consumer
+                <ul class="nav nav-main">
+                    <x-sidebar-navlink
+                        :route="'consumer-dashboard'"
+                        :route-name="'Главная'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'consumer-statistics'"
+                        :route-name="'Статистика'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'consumer-statistics-by-trees'"
+                        :route-name="'Статистика По Состоянию'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'consumer-statistics-tree'"
+                        :route-name="'Статистика по деревьям'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                </ul>
+                @endconsumer
                 <ul class="nav nav-main">
                     <li class="nav-parent">
                         <form action="{{route("logout")}}" method="post">

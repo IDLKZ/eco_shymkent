@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AgronomMiddleware;
 use App\Http\Middleware\BeforeSessionFlush;
+use App\Http\Middleware\ConsumerMiddleware;
 use App\Http\Middleware\EnsureUserPermission;
 use App\Http\Middleware\MayorMiddleware;
 use App\Http\Middleware\ModeratorMiddleware;
@@ -77,6 +78,7 @@ class Kernel extends HttpKernel
         'ModerMiddleware' => ModeratorMiddleware::class,
         'MayorMiddleware' => MayorMiddleware::class,
         "AgronomMiddleware"=>AgronomMiddleware::class,
+        "ConsumerMiddleware"=>ConsumerMiddleware::class,
         "EnsureUserPermission" => EnsureUserPermission::class,
     ];
 

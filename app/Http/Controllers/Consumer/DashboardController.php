@@ -1,43 +1,44 @@
 <?php
 
-namespace App\Http\Controllers\Mayor;
+namespace App\Http\Controllers\Consumer;
 
 use App\Exports\MarkerExport;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
 use App\Models\Breed;
-use App\Models\Category;
+use App\Models\Consumer;
 use App\Models\Marker;
-use App\Models\Place;
 use App\Models\Population;
 use App\Models\Sanitary;
-use App\Models\Status;
-use App\Models\Type;
-use Brian2694\Toastr\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
-
+use Auth;
 class DashboardController extends Controller
 {
+
+
+
     public function index()
     {
+        $areasIds = Consumer::where(["user_id"=>auth()->id()])->pluck("area_id","area_id")->toArray();
         $markerTotal = Marker::count();
-        $breeds = DB::table('markers')
+        $breeds = Marker::
+            whereIn("area_id",$areasIds)
             ->select('breed_id', DB::raw('count(*) as total'))
             ->groupBy('breed_id')
             ->orderBy('total', 'DESC')
             ->get();
-        $breedTotal = $breeds->pluck("total");
+        $breedTotal = $breeds->pluck("total") ?? 0;
         $breedsT = Breed::whereIn("id", $breeds->pluck("breed_id")->toArray())->pluck("title_ru","id");
+        $dataForBreed = [];
         foreach ($breeds as $item) {
             if ($item->breed_id) {
                 $dataForBreed[] = [$breedsT[$item->breed_id], $item->total];
             }
         }
-
-        $areas = Area::withCount('markers')->get();
+        $areas = Area::whereIn("id",$areasIds)->withCount('markers')->get();
         $sanitaries = Sanitary::withCount('markers')->get();
+        $dataForArea = [];
         foreach ($areas as $value) {
             $dataForArea[] = [$value->title_ru, $value->markers_count];
         }
@@ -45,31 +46,32 @@ class DashboardController extends Controller
         foreach ($sanitaries as $value) {
             $dataForSanitary[] = [$value->title_ru , $value->markers_count];
         }
-        $populations = Population::with('area')->get();
-        return view('mayor.dashboard', compact('dataForBreed', 'dataForArea', 'dataForSanitary', 'markerTotal', 'populations', 'areas'));
+        $populations = Population::whereIn("area_id",$areasIds)->with('area')->get();
+        return view('consumer.dashboard', compact('dataForBreed', 'dataForArea', 'dataForSanitary', 'markerTotal', 'populations', 'areas',"areasIds"));
     }
 
     public function statistics()
     {
+        $areasIds = Consumer::where(["user_id"=>auth()->id()])->pluck("area_id","area_id")->toArray();
         $forExp = [];
-        $markers = Marker::with('sanitary', 'breed', 'place.area')->paginate(20);
-
-        return view('mayor.statistics', compact('markers', 'forExp'));
+        $markers = Marker::whereIn("area_id",$areasIds)->with('sanitary', 'breed', 'place.area')->paginate(20);
+        return view('consumer.statistics', compact('markers', 'forExp'));
     }
     public function statisticsByTree()
     {
-        return view('mayor.statistics-by-trees');
+        return view('consumer.statistics-by-trees');
     }
     public function statisticsTree()
     {
-        return view('mayor.statistics-trees');
+        return view('consumer.statistics-trees');
     }
 
     public function search(Request $request)
     {
-        $markers = Marker::searchable($request->all())->paginate(20);
+        $areasIds = Consumer::where(["user_id"=>auth()->id()])->pluck("area_id","area_id")->toArray();
+        $markers = Marker::searchable($request->all())->whereIn("area_id",$areasIds)->paginate(20);
         $forExp = $request->all();
-        return view('mayor.statistics', compact('markers', 'forExp'));
+        return view('consumer.statistics', compact('markers', 'forExp',"areasIds"));
     }
 
     public function export(Request $request)
@@ -80,9 +82,11 @@ class DashboardController extends Controller
     }
 
     public function marker_edit($id){
-        $marker = Marker::with(["area","event","type","breed","sanitary","status","category","place","user"])->firstWhere("id",$id);
+        $areasIds = Consumer::where(["user_id"=>auth()->id()])->pluck("area_id","area_id")->toArray();
+
+        $marker = Marker::whereIn("area_id",$areasIds)->with(["area","event","type","breed","sanitary","status","category","place","user"])->firstWhere("id",$id);
         if($marker){
-            return view('mayor.marker_show', compact('marker'));
+            return view('consumer.marker_show', compact('marker'));
         }
         toastr('Не найдено!');
         return back();

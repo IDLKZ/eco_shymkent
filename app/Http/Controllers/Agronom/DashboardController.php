@@ -1,21 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Mayor;
+namespace App\Http\Controllers\Agronom;
 
 use App\Exports\MarkerExport;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
 use App\Models\Breed;
-use App\Models\Category;
 use App\Models\Marker;
-use App\Models\Place;
 use App\Models\Population;
 use App\Models\Sanitary;
-use App\Models\Status;
-use App\Models\Type;
-use Brian2694\Toastr\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -46,7 +40,7 @@ class DashboardController extends Controller
             $dataForSanitary[] = [$value->title_ru , $value->markers_count];
         }
         $populations = Population::with('area')->get();
-        return view('mayor.dashboard', compact('dataForBreed', 'dataForArea', 'dataForSanitary', 'markerTotal', 'populations', 'areas'));
+        return view('agronom.dashboard', compact('dataForBreed', 'dataForArea', 'dataForSanitary', 'markerTotal', 'populations', 'areas'));
     }
 
     public function statistics()
@@ -54,22 +48,23 @@ class DashboardController extends Controller
         $forExp = [];
         $markers = Marker::with('sanitary', 'breed', 'place.area')->paginate(20);
 
-        return view('mayor.statistics', compact('markers', 'forExp'));
+        return view('agronom.statistics', compact('markers', 'forExp'));
     }
     public function statisticsByTree()
     {
-        return view('mayor.statistics-by-trees');
+        return view('agronom.statistics-by-trees');
     }
+
     public function statisticsTree()
     {
-        return view('mayor.statistics-trees');
+        return view('agronom.statistics-trees');
     }
 
     public function search(Request $request)
     {
         $markers = Marker::searchable($request->all())->paginate(20);
         $forExp = $request->all();
-        return view('mayor.statistics', compact('markers', 'forExp'));
+        return view('agronom.statistics', compact('markers', 'forExp'));
     }
 
     public function export(Request $request)
@@ -82,7 +77,7 @@ class DashboardController extends Controller
     public function marker_edit($id){
         $marker = Marker::with(["area","event","type","breed","sanitary","status","category","place","user"])->firstWhere("id",$id);
         if($marker){
-            return view('mayor.marker_show', compact('marker'));
+            return view('agronom.marker_show', compact('marker'));
         }
         toastr('Не найдено!');
         return back();

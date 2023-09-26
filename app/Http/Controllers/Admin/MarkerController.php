@@ -112,4 +112,19 @@ class MarkerController extends Controller
         }
         return redirect()->route("markers");
     }
+
+
+    public function update_by_place(){
+        //        ini_set('memory_limit', '-1');
+//        ini_set('max_execution_time', 300); // 5 minutes
+//        $markers = Marker::all();
+//        $incorrect_area = [];
+//        foreach ($markers as $markerItem){
+//            $place = Place::find($markerItem->place_id);
+//            if($place->area_id != $markerItem->area_id){
+//                array_push($incorrect_area,$markerItem->id);
+//            }
+//        }
+//        dd($incorrect_area);
+    }
 }
