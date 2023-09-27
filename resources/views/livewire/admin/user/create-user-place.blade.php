@@ -29,6 +29,7 @@
     @if($isShowConsumer)
         <div class="relative mb-4" data-te-input-wrapper-init>
             <select wire:model="area_id" class="w-full" data-te-select-init>
+                <option value="">Выберите район</option>
                 @foreach($areas as $areaItem)
                     <option value="{{$areaItem->id}}">{{$areaItem->title_ru}}</option>
                 @endforeach
