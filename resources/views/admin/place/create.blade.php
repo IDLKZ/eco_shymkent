@@ -73,6 +73,15 @@
             @error('geocode')
             <div class="text-red-600">{{ $message }}</div>
             @enderror
+
+            <select
+                id="map_tile_change"
+                class="form-select w-full mb-4">
+                <option value="0" selected>Google Map</option>
+                <option value="1">2Gis Map</option>
+                <option value="2">MapBox Map</option>
+            </select>
+
             <div class="relative mb-4">
                 <div id='map'></div>
             </div>
@@ -256,9 +265,28 @@
                         $("#area-form").submit();
                     })
 
+                    let googleTile = L.tileLayer("http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {subdomains:['mt0','mt1','mt2','mt3'], maxZoom:18}).addTo(map),
+                        gisTile = L.tileLayer("http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}", {subdomains:['mt0','mt1','mt2','mt3'], maxZoom:18}).addTo(map),
+                        mapboxTile = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibnVyYmFraXQiLCJhIjoiY2s2bDMxNHV4MDl1bzNvcGFtbzN4aW9oaiJ9.UJwM6VtXrk62p_s54jGU5A', {subdomains:['mt0','mt1','mt2','mt3'], maxZoom:25}).addTo(map);
+                    $("#map_tile_change").on("change", function (e) {
+                        if ($("#map_tile_change").val() == 0) {
+                            map.removeLayer(gisTile);
+                            map.removeLayer(mapboxTile);
+                            map.addLayer(googleTile);
+                        } else if($("#map_tile_change").val() == 1) {
+                            map.removeLayer(googleTile);
+                            map.removeLayer(mapboxTile);
+                            map.addLayer(gisTile);
+                        } else {
+                            map.removeLayer(googleTile);
+                            map.removeLayer(gisTile);
+                            map.addLayer(mapboxTile);
+                        }
+                    })
+                    map.addLayer(googleTile)
                     // L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2VwbGF5a3oyMDIwIiwiYSI6ImNrcTRxd3I3czB2eHgydm8wOHR2NW40OTEifQ.a08RNc7xB3Tm1pGai2NNCQ', {subdomains:['mt0','mt1','mt2','mt3'], maxZoom:25}).addTo(map);
                     // L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibnVyYmFraXQiLCJhIjoiY2s2bDMxNHV4MDl1bzNvcGFtbzN4aW9oaiJ9.UJwM6VtXrk62p_s54jGU5A', {subdomains:['mt0','mt1','mt2','mt3'], maxZoom:25}).addTo(map);
-                    L.tileLayer('http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}', {subdomains:['mt0','mt1','mt2','mt3'], maxZoom:18}).addTo(map);
+                    // L.tileLayer("http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {subdomains:['mt0','mt1','mt2','mt3'], maxZoom:18}).addTo(map);
                 // L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
                 //     maxZoom: 20,
                 //     subdomains:['mt0','mt1','mt2','mt3']
