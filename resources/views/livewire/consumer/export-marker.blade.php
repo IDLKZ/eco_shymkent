@@ -12,9 +12,9 @@
             <input type="hidden" name="sanitary_id" value="{{$forExp['sanitary_id']}}">
             {{--            <input type="hidden" name="status_id" value="{{$forExp['status_id']}}">--}}
         @endif
-        <button type="submit" class="btn btn-success text-black text-hover-light">
-            Экспорт в Excel
-        </button>
+{{--        <button type="submit" class="btn btn-success text-black text-hover-light">--}}
+{{--            Экспорт в Excel--}}
+{{--        </button>--}}
         <div wire:loading>
             <img src="{{asset('images/loading.gif')}}" width="30" height="30">
         </div>
