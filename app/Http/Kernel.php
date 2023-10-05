@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AccessMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AgronomMiddleware;
 use App\Http\Middleware\BeforeSessionFlush;
@@ -51,7 +52,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -77,9 +78,10 @@ class Kernel extends HttpKernel
         'AdminMiddleware' => AdminMiddleware::class,
         'ModerMiddleware' => ModeratorMiddleware::class,
         'MayorMiddleware' => MayorMiddleware::class,
-        "AgronomMiddleware"=>AgronomMiddleware::class,
-        "ConsumerMiddleware"=>ConsumerMiddleware::class,
+        "AgronomMiddleware" => AgronomMiddleware::class,
+        "ConsumerMiddleware" => ConsumerMiddleware::class,
         "EnsureUserPermission" => EnsureUserPermission::class,
+        "AccessToken" => AccessMiddleware::class
     ];
 
     public function terminate($request, $response): void

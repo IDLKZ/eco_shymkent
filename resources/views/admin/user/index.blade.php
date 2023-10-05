@@ -70,6 +70,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="my-4">
+                            {!! $users->links() !!}
+                        </div>
 
                     </div>
                 </div>
