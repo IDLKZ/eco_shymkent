@@ -73,10 +73,10 @@
             <a href="{{route("mayor-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endmayor
             @agronom
-            <a role="menuitem" tabindex="-1" href="{{route('agronom-dashboard')}}"><i class="bx bx-user-circle"></i> Привет, {{auth()->user()->name}}</a>
+            <a href="{{route("agronom-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endagronom
             @consumer
-            <a role="menuitem" tabindex="-1" href="{{route('consumer-dashboard')}}"><i class="bx bx-user-circle"></i> Привет, {{auth()->user()->name}}</a>
+            <a href="{{route("consumer-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endconsumer
         @else
             <a href="{{route("login")}}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-block">Вход<i class="fa fa-arrow-right ms-3"></i></a>
