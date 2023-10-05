@@ -43,6 +43,12 @@
                         @moder
                             <a role="menuitem" tabindex="-1" href="{{route('moder-dashboard')}}"><i class="bx bx-user-circle"></i> Главная страница</a>
                         @endmoder
+                        @agronom
+                        <a role="menuitem" tabindex="-1" href="{{route('agronom-dashboard')}}"><i class="bx bx-user-circle"></i> Главная страница</a>
+                        @endagronom
+                        @consumer
+                        <a role="menuitem" tabindex="-1" href="{{route('consumer-dashboard')}}"><i class="bx bx-user-circle"></i> Главная страница</a>
+                        @endconsumer
                     </li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
