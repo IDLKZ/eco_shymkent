@@ -5,6 +5,10 @@
     @endpush
     <div class="container mx-auto py-5">
         <h1 class="mb-4 rounded-lg bg-secondary-100 px-6 py-5 text-base text-secondary-800">Удалить посадки места - {{$place->title_ru}}</h1>
+        <div class="my-2">
+            <hr>
+            <label class="fs-6 my-2 text-dark font-weight-bold">Вид насаждения</label>
+        </div>
         <form id="area-form" action="{{route("delete-markers-by-place-stats",["id"=>$place->id])}}"  method="post">
             @csrf
             @method('PUT')
@@ -13,6 +17,12 @@
                     <div class="bg-danger text-white my-2 p-2">{{$error}}</div>
                 @endforeach
             @endif
+            <select id="breedSelection" name="breeds_id[]" class="w-100 mw-100" multiple>
+                @foreach($breeds as $breedItem)
+                    <option value="{{$breedItem->id}}">{{$breedItem->title_ru}} ({{$breedItem->type->title_ru}})</option>
+                @endforeach
+            </select>
+            <hr>
             <select
                 id="map_tile_change"
                 class="form-select w-full mb-4">
@@ -24,7 +34,6 @@
                 <div id='map'></div>
             </div>
             <input type="hidden" name="geocode" id="geocode">
-            <input type="text"  id="confirmation" class="form-group my-3 border-1 border-danger" placeholder="введите:я готов удалить">
             <br>
             <button
                 id="submit-map"
@@ -39,9 +48,13 @@
         <x-leaflet-scripts></x-leaflet-scripts>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
         <script>
-
+            const selectIds = ["#breedSelection"];
+            selectIds.forEach((idItem)=>{
+                $(idItem).select2();
+            });
             let place = {{Js::from($place)}};
             let search_polygon;
+            let breed_ids;
             let dataTree = [];
             let confirm_delete = false;
             let maxZoom = 16;
@@ -101,14 +114,19 @@
             map.on("moveend",function (event) {
                 getSearchPolygon(event);
             })
-            $("#confirmation").on("change",(e)=>{
-               if(e.target.value == "я готов удалить"){
-                   confirm_delete = true;
-               }
-               else{
-                   confirm_delete = false;
-               }
+
+            $('#breedSelection').on('select2:select', function (e) {
+               findBreed();
+               loadMarker();
             });
+
+           function findBreed(){
+                breed_ids = "";
+                $('#breedSelection').find(':selected').each(function(item)
+                {
+                    breed_ids += "" +$('#breedSelection').find(':selected')[item].value + ",";
+                });
+            }
 
             function cleanMarker(){
                 map.eachLayer(function (layer) {
@@ -134,7 +152,8 @@
             async function loadMarker() {
                 if (map.getZoom() > maxZoom && place.id && search_polygon) {
                     cleanMarker();
-                    const res = await axios.get('/api/markers-all-place', {params: {search_polygon: search_polygon,ids:place.id.toString()}});
+                    findBreed();
+                    const res = await axios.get('/api/markers-all-place', {params: {search_polygon: search_polygon,ids:place.id.toString(),breed:breed_ids}});
                     if(res.status == 200){
                         if(res.data.length){
                             dataTree = res.data;
@@ -178,7 +197,8 @@
 
             $("#submit-map").on("click",function (e) {
                 e.preventDefault();
-                if(confirm_delete){
+                $q = confirm('Вы хотите удалить выбранные насаждения?');
+                if($q){
                     $("#area-form").submit();
                 }
             })

@@ -162,8 +162,9 @@ class PlaceController extends Controller
 
     public function deleteByPlace($id){
         $place = Place::find($id);
+        $breeds = Breed::with("type")->get();
         if($place){
-            return view("admin.marker.delete_by_place",compact("place"));
+            return view("admin.marker.delete_by_place",compact("place","breeds"));
         }
         toastr()->warning('Посадка не найдена!');
         return redirect('/404');
@@ -171,9 +172,16 @@ class PlaceController extends Controller
     public function deleteByPlaceStats(Request $request,$id){
         $request->validate(["geocode"=>"required"]);
         try{
+            $breeds_ids = $request->get("breeds_id");
             $polygon = Polygon::fromJson($request->get("geocode"));
-            $markersCount = Marker::whereContains($polygon, "point")->where(["place_id"=>$id])->count();
-            Marker::whereContains($polygon, "point")->where(["place_id"=>$id])->delete();
+            if($breeds_ids){
+                $markersCount = Marker::whereContains($polygon, "point")->where(["place_id"=>$id])->whereIn("breed_id",$request->get("breeds_id"))->count();
+                Marker::whereContains($polygon, "point")->where(["place_id"=>$id])->whereIn("breed_id",$request->get("breeds_id"))->delete();
+            }
+            else{
+                $markersCount = Marker::whereContains($polygon, "point")->where(["place_id"=>$id])->count();
+                Marker::whereContains($polygon, "point")->where(["place_id"=>$id])->delete();
+            }
             toastr()->success("Удалено насаждений: ". $markersCount,"Success");
         }
         catch (\Exception $exception){
