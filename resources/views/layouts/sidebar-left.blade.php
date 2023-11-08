@@ -185,6 +185,11 @@
                         :route-name="'Статистика по деревьям'"
                         :icon="'bx bx-home-alt'"
                     />
+                    <x-sidebar-navlink
+                        :route="'mayor-statistics-breed-place'"
+                        :route-name="'Статистика по видам'"
+                        :icon="'bx bx-home-alt'"
+                    />
                 </ul>
                 @endmayor
                 @agronom

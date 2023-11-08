@@ -144,6 +144,7 @@ Route::middleware('AccessToken')->group(function (){
             Route::get('mayor-marker-show/{id}', [MayorDashboardController::class, 'marker_edit'])->name('mayor-marker-show');
             Route::get('statistics-by-tree', [MayorDashboardController::class, 'statisticsByTree'])->name('mayor-statistics-by-trees');
             Route::get('statistics-tree', [MayorDashboardController::class, 'statisticsTree'])->name('mayor-statistics-tree');
+            Route::get('statistics-breed-place', [MayorDashboardController::class, 'statisticsBreed'])->name('mayor-statistics-breed-place');
         });
         //Mayor
         //Consumer

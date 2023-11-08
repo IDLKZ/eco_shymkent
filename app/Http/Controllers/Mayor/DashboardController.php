@@ -64,6 +64,10 @@ class DashboardController extends Controller
     {
         return view('mayor.statistics-trees');
     }
+    public function statisticsBreed()
+    {
+        return view('mayor.statistics-breed');
+    }
 
     public function search(Request $request)
     {
