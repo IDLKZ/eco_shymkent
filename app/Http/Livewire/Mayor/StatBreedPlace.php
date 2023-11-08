@@ -37,18 +37,22 @@ class StatBreedPlace extends Component
         if($this->area_id && $this->breed_id){
             $condition = ["area_id"=>$this->area_id,"breed_id"=>$this->breed_id];
             $query = Marker::where($condition)->with(["breed","place.area","place.category"]);
+            $this->count = Marker::where($condition)->count();
             if($this->category_id){
                 $category_id = $this->category_id;
                 $query= Marker::where($condition)
                     ->whereHas("place",function ($query) use($category_id){
                         $query->where(["category_id"=>$category_id]);
                     })->with(["breed","place.area","place.category"]);
+                $this->count = Marker::where($condition)->whereHas("place",function ($query) use($category_id){
+                    $query->where(["category_id"=>$category_id]);
+                })->count();
             }
             $this->places = $query
                 ->select("place_id",'breed_id', DB::raw('count(*) as breed_total'))
                 ->orderBy("breed_total","desc")
                 ->groupBy(["place_id"])->get();
-            $this->count = Marker::where($condition)->count();
+
 
         }
         //re-enable ONLY_FULL_GROUP_BY
