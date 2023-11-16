@@ -67,8 +67,8 @@
                                         <th scope="col">Наименование</th>
                                         <th scope="col">Категория</th>
                                         <th scope="col">Здоровые</th>
-                                        <th scope="col">Усыхающие</th>
-                                        <th scope="col">Аварийные</th>
+                                        <th scope="col">Ослабленные (повреждение 25% - 50%)</th>
+                                        <th scope="col">Усыхающие (повреждение более 50%)</th>
                                     </tr>
                                     </thead>
                                     @php
@@ -153,7 +153,7 @@
                                                     @foreach($breeds[2] as $breed_item)
                                                         <tr>
                                                             <th class="text-warning">{{$breed_item->breed ? $breed_item->breed->title_ru : $breed_item->breed_id}}</th>
-                                                            <th class="text-warning">Усыхающие</th>
+                                                            <th class="text-warning">Ослабленные (повреждение 25% - 50%)</th>
                                                             <td>{{$breed_item->breed_total}}</td>
                                                         </tr>
                                                     @endforeach
@@ -176,7 +176,7 @@
                                                     @foreach($breeds[3] as $breed_item)
                                                         <tr>
                                                             <th class="text-danger">{{$breed_item->breed ? $breed_item->breed->title_ru : $breed_item->breed_id}}</th>
-                                                            <th class="text-danger">Аварийные</th>
+                                                            <th class="text-danger">Усыхающие (повреждение более 50%)</th>
                                                             <td>{{$breed_item->breed_total}}</td>
                                                         </tr>
                                                     @endforeach

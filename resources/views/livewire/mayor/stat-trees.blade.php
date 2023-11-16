@@ -52,8 +52,8 @@
                         <th scope="col">Район</th>
                         <th scope="col">Всего</th>
                         <th scope="col">Здоровые</th>
-                        <th scope="col">Усыхающие</th>
-                        <th scope="col">Аварийные</th>
+                        <th scope="col">Ослабленные (повреждение 25% - 50%)</th>
+                        <th scope="col">Усыхающие (повреждение более 50%</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -138,8 +138,8 @@
                             <th scope="col">Район</th>
                             <th scope="col">Всего (метров)</th>
                             <th scope="col">Здоровые (метров) </th>
-                            <th scope="col">Усыхающие (метров)</th>
-                            <th scope="col">Аварийные (метров)</th>
+                            <th scope="col">Ослабленные (повреждение 25% - 50%) (метров)</th>
+                            <th scope="col">Усыхающие (повреждение более 50%) (метров)</th>
                         </tr>
                         </thead>
                         <tbody>
