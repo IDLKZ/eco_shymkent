@@ -34,6 +34,13 @@ class Area extends Model
         return $this->hasManyThrough(Marker::class, Place::class, 'area_id', 'place_id','id','id');
     }
 
+    public function get_street_markers(): \MatanYadaev\EloquentSpatial\SpatialBuilder|HasManyThrough
+    {
+        return $this->markers()->whereHas('place.category', function ($query){
+            return $query->where('id', 1);
+        });
+    }
+
     public function user_places() : HasManyThrough
     {
         return $this->hasManyThrough(UserPlace::class, Place::class, 'id', 'place_id', 'area_id', 'id');

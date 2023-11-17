@@ -36,10 +36,10 @@ class DashboardController extends Controller
             }
         }
 
-        $areas = Area::withCount('markers')->get();
+        $areas = Area::withCount('get_street_markers')->get();
         $sanitaries = Sanitary::withCount('markers')->get();
         foreach ($areas as $value) {
-            $dataForArea[] = [$value->title_ru, $value->markers_count];
+            $dataForArea[] = [$value->title_ru, $value->get_street_markers_count];
         }
 
         foreach ($sanitaries as $value) {
