@@ -37,7 +37,14 @@ class Area extends Model
     public function get_street_markers(): \MatanYadaev\EloquentSpatial\SpatialBuilder|HasManyThrough
     {
         return $this->markers()->whereHas('place.category', function ($query){
-            return $query->where('id', 1);
+            return $query->whereIn('id', [1,2]);
+        });
+    }
+
+    public function get_park_markers(): \MatanYadaev\EloquentSpatial\SpatialBuilder|HasManyThrough
+    {
+        return $this->markers()->whereHas('place.category', function ($query){
+            return $query->where('id', 2);
         });
     }
 

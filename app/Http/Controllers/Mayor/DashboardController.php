@@ -28,25 +28,24 @@ class DashboardController extends Controller
             ->groupBy('breed_id')
             ->orderBy('total', 'DESC')
             ->get();
-        $breedTotal = $breeds->pluck("total");
+        //        $breedTotal = $breeds->pluck("total");
         $breedsT = Breed::whereIn("id", $breeds->pluck("breed_id")->toArray())->pluck("title_ru","id");
         foreach ($breeds as $item) {
             if ($item->breed_id) {
                 $dataForBreed[] = [$breedsT[$item->breed_id], $item->total];
             }
         }
-
         $areas = Area::withCount('get_street_markers')->get();
+        $pop_areas = Area::withCount('markers')->get();
         $sanitaries = Sanitary::withCount('markers')->get();
         foreach ($areas as $value) {
             $dataForArea[] = [$value->title_ru, $value->get_street_markers_count];
         }
-
         foreach ($sanitaries as $value) {
             $dataForSanitary[] = [$value->title_ru , $value->markers_count];
         }
         $populations = Population::with('area')->get();
-        return view('mayor.dashboard', compact('dataForBreed', 'dataForArea', 'dataForSanitary', 'markerTotal', 'populations', 'areas'));
+        return view('mayor.dashboard', compact('dataForBreed', 'dataForArea', 'dataForSanitary', 'markerTotal', 'populations', 'areas', 'pop_areas'));
     }
 
     public function statistics()

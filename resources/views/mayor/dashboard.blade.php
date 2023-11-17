@@ -134,20 +134,20 @@
                         {{$population->count}}
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
-                        @if($areas->find($population->area_id))
-                            {{($areas->find($population->area_id))->markers_count}} <br>
+                        @if($pop_areas->find($population->area_id))
+                            {{($pop_areas->find($population->area_id))->markers_count}} <br>
                             <span class="text-danger">
-                                - {{round((($population->count*10)/9)-($areas->find($population->area_id))->markers_count)}}
+                                - {{round((($population->count*10)/9)-($pop_areas->find($population->area_id))->markers_count)}}
                             </span>
                         @else
                             -
                         @endif
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
-                        @if($areas->find($population->area_id))
-                            {{round((($areas->find($population->area_id))->markers_count)*9 / $population->count, 2)}} м<sup>2</sup>/чел
+                        @if($pop_areas->find($population->area_id))
+                            {{round((($pop_areas->find($population->area_id))->markers_count)*9 / $population->count, 2)}} м<sup>2</sup>/чел
                             <br>
-                            <span class="text-danger">- {{10-round((($areas->find($population->area_id))->markers_count)*9 / $population->count, 2)}} м<sup>2</sup>/чел</span>
+                            <span class="text-danger">- {{10-round((($pop_areas->find($population->area_id))->markers_count)*9 / $population->count, 2)}} м<sup>2</sup>/чел</span>
                         @else
                             -
                         @endif
