@@ -115,6 +115,11 @@ class Marker extends Model
         if (isset($request['area_id']) && $request['area_id'] != 0) {
             $data->where('area_id', $request['area_id']);
         }
+        if (isset($request['category_id']) && $request['category_id'] != 0) {
+            $data->whereHas('place', function($query) use ($request){
+                $query->where('category_id', $request['category_id']);
+            });
+        }
         if (isset($request['place_id']) && $request['place_id'] != 0) {
             $data->where('place_id', $request['place_id']);
         }
