@@ -10,7 +10,7 @@ class Breed extends Model
 {
     use HasFactory, Upload;
 
-    protected $fillable = ['title_ru', 'title_kz','image_url', 'coefficient', 'status', 'type_id'];
+    protected $fillable = ['title_ru', 'title_kz','image_url', 'coefficient', 'status', 'type_id',"old_age"];
 
     public function markers(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
