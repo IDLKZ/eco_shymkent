@@ -27,6 +27,20 @@ use App\Http\Controllers\Consumer\DashboardController as ConsumerDashboardContro
 //Agronom
 use App\Http\Controllers\Agronom\DashboardController as AgronomDashboardController;
 //Agronom
+//Chef
+use App\Http\Controllers\Chef\DashboardController as ChefDashboardController;
+use App\Http\Controllers\Chef\UserController as ChefUserController;
+use App\Http\Controllers\Chef\DepartmentController as ChefDepartmentController;
+use App\Http\Controllers\Chef\WorkController as ChefWorkController;
+//Chef
+//Agronomist
+use App\Http\Controllers\Agronomist\DashboardController as AgronomistDashboardController;
+use App\Http\Controllers\Agronomist\WorkResultController as AgronomistWorkResultController;
+//Agronomist
+//Brigadier
+use App\Http\Controllers\Brigadier\DashboardController as BrigadierDashboardController;
+use App\Http\Controllers\Brigadier\WorkResultController as BrigadierWorkResultController;
+//Brigadier
 use App\Http\Controllers\Moder\BushController as ModerBushController;
 use App\Http\Controllers\HomeController;
 //Moderator Start
@@ -174,6 +188,27 @@ Route::middleware('AccessToken')->group(function (){
             Route::get('mayor-marker-show/{id}', [AgronomDashboardController::class, 'marker_edit'])->name('agronom-marker-show');
         });
         //Agronom
+        //Chef
+        Route::middleware('ChefMiddleware')->prefix('chef')->group(function (){
+            Route::get('', [ChefDashboardController::class, 'index'])->name('chef-dashboard');
+            Route::resource('chef-user', ChefUserController::class);
+            Route::resource('chef-department', ChefDepartmentController::class);
+            Route::resource('chef-work', ChefWorkController::class);
+        });
+        //Chef
+        //Agronomist
+        Route::middleware('AgronomistMiddleware')->prefix('agronomist')->group(function (){
+            Route::get('', [AgronomistDashboardController::class, 'index'])->name('agronomist-dashboard');
+            Route::resource('agronomist-work-result', AgronomistWorkResultController::class)->only("index","show","edit","store","destroy");
+        });
+        //Agronomist
+        //Brigadier
+        Route::middleware('BrigadierMiddleware')->prefix('brigadier')->group(function (){
+            Route::get('', [BrigadierDashboardController::class, 'index'])->name('brigadier-dashboard');
+            Route::resource('brigadier-work-result', BrigadierWorkResultController::class)->only("index","show","edit","store","destroy");
+        });
+        //Brigadier
+
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

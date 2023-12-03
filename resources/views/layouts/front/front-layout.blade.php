@@ -78,6 +78,15 @@
             @consumer
             <a href="{{route("consumer-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endconsumer
+            @chef
+            <a href="{{route("chef-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            @endchef
+            @agronomist
+            <a href="{{route("agronomist-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            @endagronomist
+            @brigadier
+            <a href="{{route("brigadier-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            @endbrigadier
         @else
             <a href="{{route("login")}}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-block">Вход<i class="fa fa-arrow-right ms-3"></i></a>
         @endif

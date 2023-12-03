@@ -40,6 +40,15 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('consumer', function () {
             return auth()->user()->role_id == 5;
         });
+        Blade::if('chef', function () {
+            return auth()->user()->role_id == 6;
+        });
+        Blade::if('agronomist', function () {
+            return auth()->user()->role_id == 7;
+        });
+        Blade::if('brigadier', function () {
+            return auth()->user()->role_id == 8;
+        });
         view()->composer('layouts.sidebar-left', function($view){
             $view->with('counts', Breed::where('status', 2)->count());
         });

@@ -10,6 +10,7 @@ use App\Traits\Upload;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use MatanYadaev\EloquentSpatial\Objects\Point;
 
 /**
  * Class Work
@@ -40,7 +41,7 @@ class Work extends Model
 		'user_id' => 'int',
 		'chief_id' => 'int',
 		'department_id' => 'int',
-		'point' => 'point',
+		'point' => Point::class,
 		'start_at' => 'datetime',
 		'end_at' => 'datetime'
 	];
@@ -58,12 +59,15 @@ class Work extends Model
 
 	public function user()
 	{
-		return $this->belongsTo(User::class);
+		return $this->belongsTo(User::class,"user_id");
 	}
-
+    public function chief()
+    {
+        return $this->belongsTo(User::class,"chief_id","id");
+    }
 	public function department()
 	{
-		return $this->belongsTo(Department::class);
+		return $this->belongsTo(Department::class,"department_id");
 	}
 
 	public function work_results()

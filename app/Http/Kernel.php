@@ -4,8 +4,11 @@ namespace App\Http;
 
 use App\Http\Middleware\AccessMiddleware;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\AgronomistMiddleware;
 use App\Http\Middleware\AgronomMiddleware;
 use App\Http\Middleware\BeforeSessionFlush;
+use App\Http\Middleware\BrigadierMiddleware;
+use App\Http\Middleware\ChefMiddleware;
 use App\Http\Middleware\ConsumerMiddleware;
 use App\Http\Middleware\EnsureUserPermission;
 use App\Http\Middleware\MayorMiddleware;
@@ -80,6 +83,9 @@ class Kernel extends HttpKernel
         'MayorMiddleware' => MayorMiddleware::class,
         "AgronomMiddleware" => AgronomMiddleware::class,
         "ConsumerMiddleware" => ConsumerMiddleware::class,
+        "ChefMiddleware" => ChefMiddleware::class,
+        "AgronomistMiddleware" => AgronomistMiddleware::class,
+        "BrigadierMiddleware" => BrigadierMiddleware::class,
         "EnsureUserPermission" => EnsureUserPermission::class,
         "AccessToken" => AccessMiddleware::class
     ];

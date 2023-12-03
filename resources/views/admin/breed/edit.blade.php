@@ -27,6 +27,17 @@
                 @enderror
             </div>
             <div class="relative mb-4">
+                <input
+                    type="number"
+                    class="@error('old_age') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1"
+                    name="old_age"
+                    value="{{$breed->old_age}}"
+                    placeholder="Возраст для старого дерева" />
+                @error('old_age')
+                <div class="text-red-600">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="relative mb-4">
                 <label for="type_id" class="w-full">Выберите тип</label>
                 <select name="type_id" class="w-full" id="type_id">
                     @if(count($types))

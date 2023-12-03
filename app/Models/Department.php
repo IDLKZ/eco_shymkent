@@ -39,7 +39,7 @@ class Department extends Model
 		'chief_id'
 	];
 
-	public function user()
+	public function chief()
 	{
 		return $this->belongsTo(User::class, 'chief_id');
 	}

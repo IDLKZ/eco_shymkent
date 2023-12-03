@@ -22,6 +22,9 @@ class RouteServiceProvider extends ServiceProvider
     public const MayorHome = '/mayor';
     public const AgronomHome = '/agronom';
     public const ConsumerHome = '/consumer';
+    public const ChefHome = '/chef';
+    public const AgronomistHome = '/agronomist';
+    public const BrigadiertHome = '/brigadier';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

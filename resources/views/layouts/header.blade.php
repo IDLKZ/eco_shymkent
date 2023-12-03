@@ -49,6 +49,15 @@
                         @consumer
                         <a role="menuitem" tabindex="-1" href="{{route('consumer-dashboard')}}"><i class="bx bx-user-circle"></i> Главная страница</a>
                         @endconsumer
+                        @chef
+                        <a role="menuitem" tabindex="-1" href="{{route('chef-dashboard')}}"><i class="bx bx-user-circle"></i> Главная страница</a>
+                        @endchef
+                        @agronomist
+                        <a role="menuitem" tabindex="-1" href="{{route('agronomist-dashboard')}}"><i class="bx bx-user-circle"></i> Главная страница</a>
+                        @endagronomist
+                        @brigadier
+                        <a role="menuitem" tabindex="-1" href="{{route('brigadier-dashboard')}}"><i class="bx bx-user-circle"></i> Главная страница</a>
+                        @endbrigadier
                     </li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">

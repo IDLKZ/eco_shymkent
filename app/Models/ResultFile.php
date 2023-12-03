@@ -25,8 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ResultFile extends Model
 {
-	protected $table = 'result_files';
     use Upload;
+	protected $table = 'result_files';
+
 	protected $casts = [
 		'result_id' => 'int'
 	];

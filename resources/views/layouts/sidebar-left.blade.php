@@ -245,6 +245,58 @@
                     />
                 </ul>
                 @endconsumer
+                @chef
+                <ul class="nav nav-main">
+                    <x-sidebar-navlink
+                        :route="'chef-dashboard'"
+                        :route-name="'Главная'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'chef-user.index'"
+                        :route-name="'Пользователи'"
+                        :icon="'bx bx-user'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'chef-department.index'"
+                        :route-name="'Отдел'"
+                        :icon="'bx bx-building'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'chef-work.index'"
+                        :route-name="'Работа'"
+                        :icon="'bx bx-briefcase'"
+                    />
+                </ul>
+                @endchef
+                @agronomist
+                <ul class="nav nav-main">
+                    <x-sidebar-navlink
+                        :route="'agronomist-dashboard'"
+                        :route-name="'Главная'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'agronomist-work-result.index'"
+                        :route-name="'Отчеты'"
+                        :icon="'bx bx-briefcase'"
+                    />
+                </ul>
+                @endagronomist
+                @brigadier
+                <ul class="nav nav-main">
+                    <x-sidebar-navlink
+                        :route="'brigadier-dashboard'"
+                        :route-name="'Главная'"
+                        :icon="'bx bx-home-alt'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'brigadier-work-result.index'"
+                        :route-name="'Отчеты'"
+                        :icon="'bx bx-briefcase'"
+                    />
+                </ul>
+                @endbrigadier
                 <ul class="nav nav-main">
                     <li class="nav-parent">
                         <form action="{{route("logout")}}" method="post">

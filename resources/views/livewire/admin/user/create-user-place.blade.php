@@ -80,7 +80,7 @@
             value="1"
              />
         <label for="status">Активный Аккаунт</label>
-        @error('password')
+        @error('status')
         <div class="text-red-600">{{ $message }}</div>
         @enderror
     </div>
