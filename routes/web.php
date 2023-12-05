@@ -79,6 +79,7 @@ Route::middleware('AccessToken')->group(function (){
 
     Route::get('/', [HomeController::class,"index"]);
     Route::get('/map', [HomeController::class,"map"])->name("front-map");
+    Route::get('/heatmap', [HomeController::class,"heatmap"])->name("front-heatmap")->middleware(['auth', 'verified']);
     Route::get('/statistics', [HomeController::class,"stats"])->name("stats");
     Route::get('/faq', [HomeController::class,"faq"])->name("faq");
     Route::get('/contact', [HomeController::class,"contact"])->name("contact");

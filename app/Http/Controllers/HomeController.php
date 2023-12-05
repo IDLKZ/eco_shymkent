@@ -17,6 +17,9 @@ class HomeController extends Controller
     public function map(){
         return view("map");
     }
+    public function heatmap(){
+        return view("heatmap");
+    }
     public function faq(){
         return view("faq");
     }

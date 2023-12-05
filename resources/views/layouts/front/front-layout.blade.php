@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
+    @livewireStyles
     <x-front-layout-styles></x-front-layout-styles>
     @stack('front_css')
 </head>
@@ -59,6 +59,14 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="/" class="nav-item nav-link active">Главная</a>
             <a href="{{route("front-map")}}" class="nav-item nav-link">Карта</a>
+            @if(auth()->check())
+            @admin
+            <a href="{{route("front-heatmap")}}" class="nav-item nav-link">Тепловая карта</a>
+            @endadmin
+            @mayor
+            <a href="{{route("front-heatmap")}}" class="nav-item nav-link">Тепловая карта</a>
+            @endmayor
+            @endif
             <a href="{{route("faq")}}" class="nav-item nav-link">FAQ</a>
             <a href="{{route("contact")}}" class="nav-item nav-link">Контакты</a>
         </div>
@@ -117,6 +125,14 @@
                 <h4 class="text-white mb-4">Ссылки</h4>
                 <a class="btn btn-link" href="/">Главная</a>
                 <a class="btn btn-link" href="{{route("front-map")}}">Карта</a>
+                @if(auth()->check())
+                    @admin
+                    <a class="btn btn-link" href="{{route("front-heatmap")}}">Тепловая карта</a>
+                    @endadmin
+                    @mayor
+                    <a class="btn btn-link" href="{{route("front-heatmap")}}">Тепловая карта</a>
+                    @endmayor
+                @endif
                 <a class="btn btn-link" href="{{route("faq")}}">Вопросы-Ответы</a>
                 <a class="btn btn-link" href="{{route("contact")}}">Контакты</a>
             </div>
@@ -152,6 +168,7 @@
 
 <!-- JavaScript Libraries -->
 <x-front-layout-scripts></x-front-layout-scripts>
+@livewireScripts
 @stack('front_js')
 </body>
 
