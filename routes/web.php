@@ -77,6 +77,8 @@ Route::middleware('AccessToken')->group(function (){
         return redirect(\route('login'));
     });
 
+    Route::get('/create-encrypted-file', [\App\Http\Controllers\EncryptionController::class, 'createEncryptedFile']);
+
     Route::get('/', [HomeController::class,"index"]);
     Route::get('/map', [HomeController::class,"map"])->name("front-map");
     Route::get('/heatmap', [HomeController::class,"heatmap"])->name("front-heatmap")->middleware(['auth', 'verified']);
