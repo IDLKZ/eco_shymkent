@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\HashToken;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -13,12 +16,13 @@ class LoginWithFileController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-           'file' => 'required|file'
-        ]);
+           'file' => 'required|file',
+            'check' => 'accepted'
+        ], [], ['check' => 'условия']);
         if ($request->file('file')->getClientOriginalExtension() === 'pfx') {
             $fileData = file_get_contents($request['file']);
             $decryptedData = json_decode(Crypt::decrypt($fileData), 1);
-            if ($this->isValidUser($decryptedData)) {
+            if ($this->isValidUser($decryptedData, $request->file('file')->getClientOriginalName())) {
                 if (Auth::user()->role_id == env('APP_ADMIN_ROLE', 1)) {
                     return redirect()->intended(RouteServiceProvider::AdminHome);
                 } else if (Auth::user()->role_id == env('APP_MODER_ROLE', 2)) {
@@ -55,8 +59,33 @@ class LoginWithFileController extends Controller
         }
     }
 
-    private function isValidUser($fileData): bool
+    private function isValidUser($fileData, $fileExt): bool
     {
-        return Auth::attempt(['email' => $fileData['email'], 'password' => $fileData['password']]);
+        $user = \App\Models\User::where(['email' => $fileData['email'], 'password' => $fileData['password']])->first();
+        if ($user) {
+            $token = HashToken::where('user_id', $user->id)->first();
+            if ($token) {
+                if (Carbon::create($token->date) > Carbon::now()->startOfDay()) {
+                    if ($token->file === $fileExt) {
+                        auth()->login($user);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+//        return Auth::attempt(['email' => $fileData['email'], 'password' => $fileData['password']]);
+    }
+
+    public function privatePolicy()
+    {
+        return view('auth.policy');
     }
 }

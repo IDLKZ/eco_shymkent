@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\SanitaryController as AdminSanitaryController;
 use App\Http\Controllers\Admin\StatusController as AdminStatusController;
+use App\Http\Controllers\Admin\TokenController as AdminTokenController;
 use App\Http\Controllers\Admin\TypeController as AdminTypeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\UserPermissionController as AdminUserPermissionController;
@@ -51,6 +52,7 @@ use App\Http\Controllers\Moder\BreedController as ModerBreedController;
 //Moderator End
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,18 +79,20 @@ Route::middleware('AccessToken')->group(function (){
         return redirect(\route('login'));
     });
 
-    Route::get('/create-encrypted-file', [\App\Http\Controllers\EncryptionController::class, 'createEncryptedFile']);
+//    Route::get('/create-encrypted-file', [\App\Http\Controllers\EncryptionController::class, 'createEncryptedFile']);
 
-    Route::get('/', [HomeController::class,"index"]);
-    Route::get('/map', [HomeController::class,"map"])->name("front-map");
-    Route::get('/heatmap', [HomeController::class,"heatmap"])->name("front-heatmap")->middleware(['auth', 'verified']);
-    Route::get('/statistics', [HomeController::class,"stats"])->name("stats");
-    Route::get('/faq', [HomeController::class,"faq"])->name("faq");
-    Route::get('/contact', [HomeController::class,"contact"])->name("contact");
-    Route::get('/do-backup', [HomeController::class,"db_dump"])->name("do-backup");
-    Route::get('/make-report/{id}', [HomeController::class,"make_report"])->name("make-report");
-    Route::post('/save-report', [HomeController::class,"save_report"])->name("save-report");
-    Route::post('/send-mail', [HomeController::class,"sendMail"])->name("send-mail");
+    Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
+        Route::get('/', [HomeController::class,"index"]);
+        Route::get('/map', [HomeController::class,"map"])->name("front-map");
+        Route::get('/heatmap', [HomeController::class,"heatmap"])->name("front-heatmap")->middleware(['auth', 'verified']);
+        Route::get('/statistics', [HomeController::class,"stats"])->name("stats");
+        Route::get('/faq', [HomeController::class,"faq"])->name("faq");
+        Route::get('/contact', [HomeController::class,"contact"])->name("contact");
+        Route::get('/do-backup', [HomeController::class,"db_dump"])->name("do-backup");
+        Route::get('/make-report/{id}', [HomeController::class,"make_report"])->name("make-report");
+        Route::post('/save-report', [HomeController::class,"save_report"])->name("save-report");
+        Route::post('/send-mail', [HomeController::class,"sendMail"])->name("send-mail");
+    });
 
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -139,6 +143,9 @@ Route::middleware('AccessToken')->group(function (){
             ]);
             Route::get('get-all-markers', [AdminMarkerController::class, 'getAllMarkers'])->name('get-all-markers');
             Route::any('filter-markers', [AdminMarkerController::class, 'filterMarkers'])->name('filter-markers');
+            Route::get('create-token', [AdminTokenController::class, 'createToken'])->name('create-token');
+            Route::post('create-token', [AdminTokenController::class, 'storeToken'])->name('store-token');
+            Route::delete('delete-token/{id}', [AdminTokenController::class, 'destroyToken'])->name('delete-token');
         });
         //Admin
         Route::middleware('ModerMiddleware')->prefix('moder')->group(function () {

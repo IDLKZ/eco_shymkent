@@ -22,6 +22,7 @@ Route::middleware('guest')->group(function () {
 
 //    Route::post('login', [AuthenticatedSessionController::class, 'store']);
     Route::post('login', [\App\Http\Controllers\Auth\LoginWithFileController::class, 'store']);
+    Route::get('private-policy', [\App\Http\Controllers\Auth\LoginWithFileController::class, 'privatePolicy'])->name('private-policy');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');

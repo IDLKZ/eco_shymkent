@@ -9,7 +9,7 @@ class EncryptionController extends Controller
 {
     public function createEncryptedFile()
     {
-        $data = ['email' => 'admin@gmail.com', 'password' => '@Kazitech2023'];
+        $data = ['email' => 'mayor@gmail.com', 'password' => 'akimat123456'];
 
         // Преобразование данных в JSON
         $jsonData = json_encode($data);

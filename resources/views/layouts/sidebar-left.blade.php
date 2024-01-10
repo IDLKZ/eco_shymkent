@@ -124,6 +124,11 @@
                             />
                         </ul>
                     </li>
+                    <x-sidebar-navlink
+                        :route="'create-token'"
+                        :route-name="'Токены'"
+                        :icon="'fas fa-key'"
+                    />
                 </ul>
                 @endadmin
                 @moder

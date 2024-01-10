@@ -13,7 +13,6 @@
     @livewireStyles
     <x-front-layout-styles></x-front-layout-styles>
     @stack('front_css')
-    <meta name="mailru-domain" content="HxgzLuzgGPOl9sXn" />
 </head>
 
 <body>
@@ -29,7 +28,7 @@
     <div class="row gx-0 d-none d-lg-flex">
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center me-4">
-                <span>Государственное учреждение «Управление развития комфортной городской среды города Шымкент»</span>
+                <span>{{__('messages.head_message')}}</span>
             </div>
 
         </div>
@@ -58,46 +57,63 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="/" class="nav-item nav-link active">Главная</a>
-            <a href="{{route("front-map")}}" class="nav-item nav-link">Карта</a>
+            <a href="/" class="nav-item nav-link active">{{__('messages.main')}}</a>
+            <a href="{{route("front-map")}}" class="nav-item nav-link">{{__('messages.map')}}</a>
             @if(auth()->check())
             @admin
-            <a href="{{route("front-heatmap")}}" class="nav-item nav-link">Тепловая карта</a>
+            <a href="{{route("front-heatmap")}}" class="nav-item nav-link">{{__('messages.hot_map')}}</a>
             @endadmin
             @mayor
-            <a href="{{route("front-heatmap")}}" class="nav-item nav-link">Тепловая карта</a>
+            <a href="{{route("front-heatmap")}}" class="nav-item nav-link">{{__('messages.hot_map')}}</a>
             @endmayor
             @endif
 {{--            <a href="{{route("faq")}}" class="nav-item nav-link">FAQ</a>--}}
-            <a href="{{route("contact")}}" class="nav-item nav-link">Контакты</a>
+            <a href="{{route("contact")}}" class="nav-item nav-link">{{__('messages.contact')}}</a>
+            <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                    @if(LaravelLocalization::getCurrentLocale() == 'ru')
+                        <span class="nav-profile-name">Русский</span>
+                    @elseif(LaravelLocalization::getCurrentLocale() == 'kk')
+                        <span class="nav-profile-name">Қазақша</span>
+                    @endif
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        <a class="dropdown-item" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            <i class="mdi mdi-earth text-primary"></i>
+                            {{ $properties['native'] }}
+                        </a>
+                    @endforeach
+                </div>
+            </li>
         </div>
         @if(auth()->check())
             @admin
-            <a href="{{route("admin-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("admin-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">{{__('messages.hello')}}, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endadmin
             @moder
-            <a href="{{route("moder-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("moder-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">{{__('messages.hello')}}, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endmoder
             @mayor
-            <a href="{{route("mayor-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("mayor-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">{{__('messages.hello')}}, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endmayor
             @agronom
-            <a href="{{route("agronom-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("agronom-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">{{__('messages.hello')}}, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endagronom
             @consumer
-            <a href="{{route("consumer-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("consumer-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">{{__('messages.hello')}}, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endconsumer
             @chef
-            <a href="{{route("chef-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("chef-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">{{__('messages.hello')}}, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endchef
             @agronomist
-            <a href="{{route("agronomist-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("agronomist-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">{{__('messages.hello')}}, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endagronomist
             @brigadier
-            <a href="{{route("brigadier-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">Привет, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("brigadier-dashboard")}}" class="btn btn-primary py-4 px-lg-4 rounded-0  d-block">{{__('messages.hello')}}, {{auth()->user()->name}}<i class="fa fa-arrow-right ms-3"></i></a>
             @endbrigadier
         @else
-            <a href="{{route("login")}}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-block">Вход<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{route("login")}}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-block">{{__('messages.login')}}<i class="fa fa-arrow-right ms-3"></i></a>
         @endif
     </div>
 </nav>
@@ -111,7 +127,7 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-6 col-md-6">
-                <h4 class="text-white mb-4">Контакты</h4>
+                <h4 class="text-white mb-4">{{__('messages.contact')}}</h4>
                 <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> 	г.Шымкент, Туркестанская, 11А </p>
                 <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+7(7252) 53-65-49</p>
                 <p class="mb-2"><i class="fa fa-envelope me-3"></i>prirodab@mail.ru</p>
@@ -123,19 +139,19 @@
 {{--                </div>--}}
             </div>
             <div class="col-lg-6 col-md-6">
-                <h4 class="text-white mb-4">Ссылки</h4>
-                <a class="btn btn-link" href="/">Главная</a>
-                <a class="btn btn-link" href="{{route("front-map")}}">Карта</a>
+                <h4 class="text-white mb-4">{{__('messages.links')}}</h4>
+                <a class="btn btn-link" href="/">{{__('messages.main')}}</a>
+                <a class="btn btn-link" href="{{route("front-map")}}">{{__('messages.map')}}</a>
                 @if(auth()->check())
                     @admin
-                    <a class="btn btn-link" href="{{route("front-heatmap")}}">Тепловая карта</a>
+                    <a class="btn btn-link" href="{{route("front-heatmap")}}">{{__('messages.hot_map')}}</a>
                     @endadmin
                     @mayor
-                    <a class="btn btn-link" href="{{route("front-heatmap")}}">Тепловая карта</a>
+                    <a class="btn btn-link" href="{{route("front-heatmap")}}">{{__('messages.hot_map')}}</a>
                     @endmayor
                 @endif
 {{--                <a class="btn btn-link" href="{{route("faq")}}">Вопросы-Ответы</a>--}}
-                <a class="btn btn-link" href="{{route("contact")}}">Контакты</a>
+                <a class="btn btn-link" href="{{route("contact")}}">{{__('messages.contact')}}</a>
             </div>
 {{--            <div class="col-lg-4 col-md-6">--}}
 {{--                <h4 class="text-white mb-4">Рассылка</h4>--}}
@@ -155,7 +171,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a class="border-bottom" href="javascript:void (0)">Zhasyl Shymkent</a> Все права защищены.
+                &copy; <a class="border-bottom" href="javascript:void (0)">Zhasyl Shymkent</a> {{__('messages.privacy_message')}}.
             </div>
         </div>
     </div>

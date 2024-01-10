@@ -6,8 +6,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7 my-2">
                     <div class="bg-white rounded p-4 p-sm-5 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="display-5 text-center mb-5">Приглашаем вас стать частью зеленой программы нашего
-                            города</h1>
+                        <h1 class="display-5 text-center mb-5">{{__('messages.form_text')}}</h1>
                         <form action="{{route('send-mail')}}" class="form-control" method="post">
                             @csrf
                             <div class="row g-3">
@@ -15,7 +14,7 @@
                                     <div class="form-floating">
                                         <input name="name" type="text" class="form-control bg-light border-0" id="name"
                                                placeholder="ФИО">
-                                        <label for="name">Ваше Имя</label>
+                                        <label for="name">{{__('messages.name')}}</label>
                                         @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -25,7 +24,7 @@
                                     <div class="form-floating">
                                         <input name="email" type="email" class="form-control bg-light border-0"
                                                id="gmail" placeholder="Email">
-                                        <label for="gmail">Email</label>
+                                        <label for="gmail">{{__('messages.email')}}</label>
                                         @error('email')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -35,7 +34,7 @@
                                     <div class="form-floating">
                                         <input name="phone" type="text" class="form-control bg-light border-0"
                                                id="cphone" placeholder="Телефон">
-                                        <label for="cphone">Ваш Телефон</label>
+                                        <label for="cphone">{{__('messages.phone')}}</label>
                                         @error('phone')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -48,21 +47,21 @@
                                         @error('title')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
-                                        <label for="cage">Тема вашего сообщения</label>
+                                        <label for="cage">{{__('messages.title')}}</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea name="text" class="form-control bg-light border-0"
                                                   placeholder="Ваш текст" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Текст письма</label>
+                                        <label for="message">{{__('messages.text')}}</label>
                                         @error('text')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
-                                    <button class="btn btn-primary py-3 px-4" type="submit">Отправить</button>
+                                    <button class="btn btn-primary py-3 px-4" type="submit">{{__('messages.send')}}</button>
                                 </div>
                             </div>
                         </form>
