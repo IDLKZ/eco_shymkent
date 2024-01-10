@@ -355,11 +355,11 @@
                         <img style="max-height: 200px" class="img-fluid" src="https://static.tildacdn.com/tild6338-3734-4365-a434-666461343839/_.png" alt="">
                         <div class="team-text">
                             <h6 class="mb-0">Министерство Экологии и Природных Ресурсов Казахстана</h6>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+{{--                            <div class="team-social d-flex">--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -368,11 +368,11 @@
                         <img style="max-height: 200px" class="img-fluid" src="https://yt3.googleusercontent.com/ytc/AL5GRJUCpfDphilgnBZO8nxW9P8r3_uFLlMXzTSNEuno=s900-c-k-c0x00ffffff-no-rj" alt="">
                         <div class="team-text">
                             <h6 class="mb-0">Жасыл Ел</h6>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+{{--                            <div class="team-social d-flex">--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -381,11 +381,11 @@
                         <img style="max-height: 200px" class="img-fluid" src="https://www.gov.kz/uploads/2020/2/5/a2771b439d27f513634fdbf9a2f12388_original.54774.png" alt="">
                         <div class="team-text">
                             <h6 class="mb-0">Акимат города Шымкент</h6>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+{{--                            <div class="team-social d-flex">--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>--}}
+{{--                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -396,41 +396,41 @@
 
 
     <!-- Testimonial Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="fs-5 fw-bold text-primary">Мнения</p>
-                    <h1 class="display-5 mb-5">Мнение о нашей программе: Реестр зеленых насаждений города Шымкент</h1>
-                    <p class="mb-4">
-                        Программа нашей организации по продвижению зеленых насаждений для устойчивого развития города  вызывает интерес и привлекает внимание не только общественности, но и государственных деятелей, экспертов международных программ и отчественных организаций.
-                        В этом блоге мы рассмотрим, какие отзывы и мнения высказывают  о нашей программе и ее значимости для города
-                    </p>
+{{--    <div class="container-xxl py-5">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row g-5">--}}
+{{--                <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">--}}
+{{--                    <p class="fs-5 fw-bold text-primary">Мнения</p>--}}
+{{--                    <h1 class="display-5 mb-5">Мнение о нашей программе: Реестр зеленых насаждений города Шымкент</h1>--}}
+{{--                    <p class="mb-4">--}}
+{{--                        Программа нашей организации по продвижению зеленых насаждений для устойчивого развития города  вызывает интерес и привлекает внимание не только общественности, но и государственных деятелей, экспертов международных программ и отчественных организаций.--}}
+{{--                        В этом блоге мы рассмотрим, какие отзывы и мнения высказывают  о нашей программе и ее значимости для города--}}
+{{--                    </p>--}}
 
-                </div>
-                <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="owl-carousel testimonial-carousel">
-                        <div class="testimonial-item">
-                            <img class="img-fluid rounded mb-3" src="https://flomaster.club/uploads/posts/2023-01/1673511804_flomaster-club-p-chelovek-v-kostyume-risunok-vkontakte-6.png" alt="">
-                            <p class="fs-5">
-                                Важность создания и развития зеленых насаждений для городской среды и благополучия населения признается многими государственными деятелями. Многие из них выражают свою поддержку и положительное отношение к нашей программе, основанной на принципах экологической устойчивости и заботы о здоровье горожан.
-                            </p>
-                            <h4>Эксперт 1</h4>
-                            <span>Международный деятель программы</span>
-                        </div>
-                        <div class="testimonial-item">
-                            <img class="img-fluid rounded mb-3" src="http://versia61.ru/assets/images/advokats/no-foto-women.jpg" alt="">
-                            <p class="fs-5">
-                                Важность создания и развития зеленых насаждений для городской среды и благополучия населения признается многими государственными деятелями. Многие из них выражают свою поддержку и положительное отношение к нашей программе, основанной на принципах экологической устойчивости и заботы о здоровье горожан.
-                            </p>
-                            <h4>Эксперт 2</h4>
-                            <span>Международный деятель программы</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                </div>--}}
+{{--                <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.5s">--}}
+{{--                    <div class="owl-carousel testimonial-carousel">--}}
+{{--                        <div class="testimonial-item">--}}
+{{--                            <img class="img-fluid rounded mb-3" src="https://flomaster.club/uploads/posts/2023-01/1673511804_flomaster-club-p-chelovek-v-kostyume-risunok-vkontakte-6.png" alt="">--}}
+{{--                            <p class="fs-5">--}}
+{{--                                Важность создания и развития зеленых насаждений для городской среды и благополучия населения признается многими государственными деятелями. Многие из них выражают свою поддержку и положительное отношение к нашей программе, основанной на принципах экологической устойчивости и заботы о здоровье горожан.--}}
+{{--                            </p>--}}
+{{--                            <h4>Эксперт 1</h4>--}}
+{{--                            <span>Международный деятель программы</span>--}}
+{{--                        </div>--}}
+{{--                        <div class="testimonial-item">--}}
+{{--                            <img class="img-fluid rounded mb-3" src="http://versia61.ru/assets/images/advokats/no-foto-women.jpg" alt="">--}}
+{{--                            <p class="fs-5">--}}
+{{--                                Важность создания и развития зеленых насаждений для городской среды и благополучия населения признается многими государственными деятелями. Многие из них выражают свою поддержку и положительное отношение к нашей программе, основанной на принципах экологической устойчивости и заботы о здоровье горожан.--}}
+{{--                            </p>--}}
+{{--                            <h4>Эксперт 2</h4>--}}
+{{--                            <span>Международный деятель программы</span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- Testimonial End -->
 
 @endsection

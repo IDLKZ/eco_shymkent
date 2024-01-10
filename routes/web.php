@@ -88,6 +88,7 @@ Route::middleware('AccessToken')->group(function (){
     Route::get('/do-backup', [HomeController::class,"db_dump"])->name("do-backup");
     Route::get('/make-report/{id}', [HomeController::class,"make_report"])->name("make-report");
     Route::post('/save-report', [HomeController::class,"save_report"])->name("save-report");
+    Route::post('/send-mail', [HomeController::class,"sendMail"])->name("send-mail");
 
     Route::get('/dashboard', function () {
         return view('dashboard');

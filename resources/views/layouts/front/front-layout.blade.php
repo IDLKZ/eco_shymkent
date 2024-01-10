@@ -13,6 +13,7 @@
     @livewireStyles
     <x-front-layout-styles></x-front-layout-styles>
     @stack('front_css')
+    <meta name="mailru-domain" content="HxgzLuzgGPOl9sXn" />
 </head>
 
 <body>
@@ -35,11 +36,11 @@
         <div class="col-lg-5 px-5 text-end">
             <div class="h-100 d-inline-flex align-items-center me-4">
                 <span class="fa fa-phone-alt me-2"></span>
-                <span>+012 345 6789</span>
+                <span>+7(7252) 53-65-49</span>
             </div>
             <div class="h-100 d-inline-flex align-items-center">
                 <span class="far fa-envelope me-2"></span>
-                <span>info@example.com</span>
+                <span>prirodab@mail.ru</span>
             </div>
         </div>
     </div>
@@ -67,7 +68,7 @@
             <a href="{{route("front-heatmap")}}" class="nav-item nav-link">Тепловая карта</a>
             @endmayor
             @endif
-            <a href="{{route("faq")}}" class="nav-item nav-link">FAQ</a>
+{{--            <a href="{{route("faq")}}" class="nav-item nav-link">FAQ</a>--}}
             <a href="{{route("contact")}}" class="nav-item nav-link">Контакты</a>
         </div>
         @if(auth()->check())
@@ -109,19 +110,19 @@
 <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
                 <h4 class="text-white mb-4">Контакты</h4>
                 <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> 	г.Шымкент, Туркестанская, 11А </p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
-                </div>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+7(7252) 53-65-49</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>prirodab@mail.ru</p>
+{{--                <div class="d-flex pt-2">--}}
+{{--                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>--}}
+{{--                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>--}}
+{{--                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>--}}
+{{--                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>--}}
+{{--                </div>--}}
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
                 <h4 class="text-white mb-4">Ссылки</h4>
                 <a class="btn btn-link" href="/">Главная</a>
                 <a class="btn btn-link" href="{{route("front-map")}}">Карта</a>
@@ -133,16 +134,16 @@
                     <a class="btn btn-link" href="{{route("front-heatmap")}}">Тепловая карта</a>
                     @endmayor
                 @endif
-                <a class="btn btn-link" href="{{route("faq")}}">Вопросы-Ответы</a>
+{{--                <a class="btn btn-link" href="{{route("faq")}}">Вопросы-Ответы</a>--}}
                 <a class="btn btn-link" href="{{route("contact")}}">Контакты</a>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <h4 class="text-white mb-4">Рассылка</h4>
-                <p>Присылать новости по почте:</p>
-                <div class="position-relative w-100">
-                    <input class="form-control bg-light border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                </div>
-            </div>
+{{--            <div class="col-lg-4 col-md-6">--}}
+{{--                <h4 class="text-white mb-4">Рассылка</h4>--}}
+{{--                <p>Присылать новости по почте:</p>--}}
+{{--                <div class="position-relative w-100">--}}
+{{--                    <input class="form-control bg-light border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
 </div>
@@ -154,7 +155,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a class="border-bottom" href="#">Eco Shymkent</a>, Все права защищены.
+                &copy; <a class="border-bottom" href="javascript:void (0)">Zhasyl Shymkent</a> Все права защищены.
             </div>
         </div>
     </div>
