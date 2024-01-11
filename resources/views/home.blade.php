@@ -109,7 +109,7 @@
                     <img class="img-fluid rounded" data-wow-delay="0.1s" src="/images/bg-1.jpg">
                 </div>
                 <div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
-                    <h1 class="display-1 text-primary mb-0">>100k</h1>
+                    <h1 class="display-1 text-primary mb-0">> 1 млн</h1>
                     <p class="text-primary mb-4">{{__('messages.trees')}}</p>
                     <h1 class="display-5 mb-4">{{__('messages.our_mission')}}</h1>
                     <p class="mb-4">
@@ -143,21 +143,21 @@
     <!-- Facts Start -->
     <div class="container-fluid facts my-5 py-5" data-parallax="scroll" data-image-src="/images/bg-5.jpg">
         <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1000000</h1>
+            <div class="row g-5 justify-center">
+                <div class="col-sm-12 col-lg-4 text-center wow fadeIn" data-wow-delay="0.1s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up">{{$stats['trees']}}</h1>
                     <span class="fs-5 fw-semi-bold text-light">{{__('messages.trees')}}</span>
                 </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">200</h1>
+                <div class="col-sm-12 col-lg-4 text-center wow fadeIn" data-wow-delay="0.3s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up">{{$stats['breeds']}}</h1>
                     <span class="fs-5 fw-semi-bold text-light">{{__('messages.type_trees')}}</span>
                 </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">100</h1>
-                    <span class="fs-5 fw-semi-bold text-light">{{__('messages.commands')}}</span>
-                </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">8</h1>
+{{--                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">--}}
+{{--                    <h1 class="display-4 text-white" data-toggle="counter-up">100</h1>--}}
+{{--                    <span class="fs-5 fw-semi-bold text-light">{{__('messages.commands')}}</span>--}}
+{{--                </div>--}}
+                <div class="col-sm-12 col-lg-4 text-center wow fadeIn" data-wow-delay="0.7s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up">{{$stats['categories']}}</h1>
                     <span class="fs-5 fw-semi-bold text-light">{{__('messages.categories')}}</span>
                 </div>
             </div>

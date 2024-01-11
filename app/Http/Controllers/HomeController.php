@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Breed;
+use App\Models\Category;
 use App\Models\Marker;
 use App\Models\Place;
 use App\Models\Query;
@@ -15,7 +17,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view("home");
+        $stats['trees'] = Marker::count();
+        $stats['breeds'] = Breed::count();
+        $stats['categories'] = Category::count();
+        return view("home", compact('stats'));
     }
 
     public function map()
