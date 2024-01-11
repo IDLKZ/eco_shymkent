@@ -152,7 +152,7 @@ return [
     | stale view if render is skipped on redirect.
     |
     */
-
+    'pagination_theme' => 'bootstrap',
     'render_on_redirect' => false,
 
 ];

@@ -29,7 +29,7 @@ class DashboardController extends Controller
             ->orderBy('total', 'DESC')
             ->get();
         //        $breedTotal = $breeds->pluck("total");
-        $breedsT = Breed::whereIn("id", $breeds->pluck("breed_id")->toArray())->pluck("title_ru","id");
+        $breedsT = Breed::whereIn("id", $breeds->pluck("breed_id")->toArray())->pluck("title_ru", "id");
         foreach ($breeds as $item) {
             if ($item->breed_id) {
                 $dataForBreed[] = [$breedsT[$item->breed_id], $item->total];
@@ -42,7 +42,7 @@ class DashboardController extends Controller
             $dataForArea[] = [$value->title_ru, $value->get_street_markers_count];
         }
         foreach ($sanitaries as $value) {
-            $dataForSanitary[] = [$value->title_ru , $value->markers_count];
+            $dataForSanitary[] = [$value->title_ru, $value->markers_count];
         }
         $populations = Population::with('area')->get();
         return view('mayor.dashboard', compact('dataForBreed', 'dataForArea', 'dataForSanitary', 'markerTotal', 'populations', 'areas', 'pop_areas'));
@@ -55,17 +55,38 @@ class DashboardController extends Controller
 
         return view('mayor.statistics', compact('markers', 'forExp'));
     }
+
     public function statisticsByTree()
     {
         return view('mayor.statistics-by-trees');
     }
+
     public function statisticsTree()
     {
         return view('mayor.statistics-trees');
     }
+
     public function statisticsBreed()
     {
         return view('mayor.statistics-breed');
+    }
+
+    public function statisticsByAge()
+    {
+        $areas = Area::withCount(
+            'get_markers_age_5',
+            'get_markers_age_5_15',
+            'get_markers_age_15_30',
+            'get_markers_age_30_50',
+            'get_markers_age_50_100',
+            'get_markers_age_100'
+        )->get();
+        return view('mayor.statistics-by-age', compact('areas'));
+    }
+
+    public function statisticsByAgeByArea($area_id, $age)
+    {
+        return view('mayor.statistics-by-age-by-area', compact('area_id', 'age'));
     }
 
     public function search(Request $request)
@@ -82,9 +103,10 @@ class DashboardController extends Controller
         return back();
     }
 
-    public function marker_edit($id){
-        $marker = Marker::with(["area","event","type","breed","sanitary","status","category","place","user"])->firstWhere("id",$id);
-        if($marker){
+    public function marker_edit($id)
+    {
+        $marker = Marker::with(["area", "event", "type", "breed", "sanitary", "status", "category", "place", "user"])->firstWhere("id", $id);
+        if ($marker) {
             return view('mayor.marker_show', compact('marker'));
         }
         toastr('Не найдено!');

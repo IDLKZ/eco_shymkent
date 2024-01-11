@@ -178,22 +178,27 @@
                     <x-sidebar-navlink
                         :route="'mayor-statistics'"
                         :route-name="'Статистика'"
-                        :icon="'bx bx-home-alt'"
+                        :icon="'bx bx-pie-chart-alt-2'"
                     />
                     <x-sidebar-navlink
                         :route="'mayor-statistics-by-trees'"
                         :route-name="'Статистика По Состоянию'"
-                        :icon="'bx bx-home-alt'"
+                        :icon="'bx bx-stats'"
                     />
                     <x-sidebar-navlink
                         :route="'mayor-statistics-tree'"
                         :route-name="'Статистика по деревьям'"
-                        :icon="'bx bx-home-alt'"
+                        :icon="'bx bx-network-chart'"
                     />
                     <x-sidebar-navlink
                         :route="'mayor-statistics-breed-place'"
                         :route-name="'Статистика по видам'"
-                        :icon="'bx bx-home-alt'"
+                        :icon="'bx bx-scatter-chart'"
+                    />
+                    <x-sidebar-navlink
+                        :route="'mayor-statistics-by-age'"
+                        :route-name="'Статистика по возрасту'"
+                        :icon="'bx bx-line-chart'"
                     />
                 </ul>
                 @endmayor

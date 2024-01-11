@@ -170,6 +170,8 @@ Route::middleware('AccessToken')->group(function (){
             Route::get('statistics-by-tree', [MayorDashboardController::class, 'statisticsByTree'])->name('mayor-statistics-by-trees');
             Route::get('statistics-tree', [MayorDashboardController::class, 'statisticsTree'])->name('mayor-statistics-tree');
             Route::get('statistics-breed-place', [MayorDashboardController::class, 'statisticsBreed'])->name('mayor-statistics-breed-place');
+            Route::get('statistics-by-age', [MayorDashboardController::class, 'statisticsByAge'])->name('mayor-statistics-by-age');
+            Route::get('statistics-by-age/{area_id}/{age}', [MayorDashboardController::class, 'statisticsByAgeByArea'])->name('mayor-statistics-by-age-by-area');
         });
         //Mayor
         //Consumer
