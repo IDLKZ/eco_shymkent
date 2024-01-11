@@ -129,6 +129,11 @@
                         :route-name="'Токены'"
                         :icon="'fas fa-key'"
                     />
+                    <x-sidebar-navlink
+                        :route="'private-policy.index'"
+                        :route-name="'Политика конфиденциальности'"
+                        :icon="'fa-brands fa-old-republic'"
+                    />
                 </ul>
                 @endadmin
                 @moder

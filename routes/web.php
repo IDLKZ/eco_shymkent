@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\CategoryPlaceController as AdminCategoryPlaceController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\PrivatePolicyController as AdminPrivatePolicyController;
 use App\Http\Controllers\Admin\SanitaryController as AdminSanitaryController;
 use App\Http\Controllers\Admin\StatusController as AdminStatusController;
 use App\Http\Controllers\Admin\TokenController as AdminTokenController;
@@ -92,6 +93,7 @@ Route::middleware('AccessToken')->group(function (){
         Route::get('/make-report/{id}', [HomeController::class,"make_report"])->name("make-report");
         Route::post('/save-report', [HomeController::class,"save_report"])->name("save-report");
         Route::post('/send-mail', [HomeController::class,"sendMail"])->name("send-mail");
+        require __DIR__.'/auth.php';
     });
 
     Route::get('/dashboard', function () {
@@ -146,6 +148,7 @@ Route::middleware('AccessToken')->group(function (){
             Route::get('create-token', [AdminTokenController::class, 'createToken'])->name('create-token');
             Route::post('create-token', [AdminTokenController::class, 'storeToken'])->name('store-token');
             Route::delete('delete-token/{id}', [AdminTokenController::class, 'destroyToken'])->name('delete-token');
+            Route::resource('private-policy', AdminPrivatePolicyController::class);
         });
         //Admin
         Route::middleware('ModerMiddleware')->prefix('moder')->group(function () {
@@ -226,6 +229,5 @@ Route::middleware('AccessToken')->group(function (){
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
-    require __DIR__.'/auth.php';
 });
 

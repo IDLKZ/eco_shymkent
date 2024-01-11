@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\HashToken;
+use App\Models\PrivatePolicy;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use http\Client\Curl\User;
@@ -86,6 +87,7 @@ class LoginWithFileController extends Controller
 
     public function privatePolicy()
     {
-        return view('auth.policy');
+        $policy = PrivatePolicy::latest()->first();
+        return view('auth.policy', compact('policy'));
     }
 }
