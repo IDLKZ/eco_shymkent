@@ -74,7 +74,7 @@ Route::get('access', function () {
     }
 });
 Route::post('check-token', [\App\Http\Controllers\AccessController::class, 'check']);
-Route::middleware('AccessToken')->group(function (){
+//Route::middleware('AccessToken')->group(function (){
     Route::get('/logout', function (){
         Auth::logout();
         return redirect(\route('login'));
@@ -229,5 +229,5 @@ Route::middleware('AccessToken')->group(function (){
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
-});
+//});
 
